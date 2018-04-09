@@ -78,7 +78,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Arcade Base 001 Color
-    second: {fileID: 2100000, guid: 394ba0891b8f28448a4b0030cc81fe8a, type: 2}
+    second: {fileID: 2100000, guid: 7d6502263cb310e47bbd79176ad8c3fe, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -181,7 +181,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
+    tangentImportMode: 0
     normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0

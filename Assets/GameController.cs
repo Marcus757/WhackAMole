@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
 	public GameObject moleContainer;
 	public Player player;
-	public TextMesh infoText;
+	public Text infoText;
 	public float spawnDuration = 1.5f;
 	public float spawnDecrement = 0.1f;
 	public float minimumSpawnDuration = 0.5f;
@@ -44,8 +45,19 @@ public class GameController : MonoBehaviour {
 
 			resetTimer -= Time.deltaTime;
 			if (resetTimer <= 0f) {
-				SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+                ResetGame();
 			}
 		}
+
+        if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            ResetGame();
+        }
 	}
+
+    public void ResetGame()
+    {
+        OVRInput.RecenterController();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
