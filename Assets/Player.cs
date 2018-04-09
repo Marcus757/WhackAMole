@@ -1,0 +1,37 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Player : MonoBehaviour {
+    public int score = 0;
+    public Hammer hammer;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        //if (!GvrViewer.Instance.Triggered && !Input.GetKeyDown(KeyCode.Space))
+        if (!Input.GetKeyDown(KeyCode.Space))
+            return;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit) == false)
+            return;
+
+        if (hit.transform.GetComponent<Mole>() == null)
+            return;
+
+        Mole mole = hit.transform.GetComponent<Mole>();
+
+        if (!mole.IsVisible())
+            return;
+
+        mole.OnHit();
+        hammer.Hit(mole.transform.position);
+        score++;
+	}
+}
