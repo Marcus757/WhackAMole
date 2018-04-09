@@ -10,28 +10,28 @@ public class Player : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        //if (!GvrViewer.Instance.Triggered && !Input.GetKeyDown(KeyCode.Space))
-        if (!Input.GetKeyDown(KeyCode.Space))
-            return;
 
-        RaycastHit hit;
+    // Update is called once per frame
+    //void Update()
+    //{
+    //    if (!Input.GetKeyDown(KeyCode.Space))
+    //        return;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit) == false)
-            return;
+    //    RaycastHit hit;
 
-        if (hit.transform.GetComponent<Mole>() == null)
-            return;
+    //    if (Physics.Raycast(transform.position, transform.forward, out hit) == false)
+    //        return;
 
-        Mole mole = hit.transform.GetComponent<Mole>();
+    //    if (hit.transform.GetComponent<Mole>() == null)
+    //        return;
 
-        if (!mole.IsVisible())
-            return;
+    //    Mole mole = hit.transform.GetComponent<Mole>();
 
-        mole.OnHit();
-        hammer.Hit(mole.transform.position);
-        score++;
-	}
+    //    if (!mole.IsVisible())
+    //        return;
+
+    //    mole.OnHit();
+    //    hammer.Hit(mole.transform.position);
+    //    score++;
+    //}
 }

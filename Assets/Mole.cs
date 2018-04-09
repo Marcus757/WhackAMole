@@ -69,4 +69,36 @@ public class Mole : MonoBehaviour {
     {
         return isVisible;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Mole hit!");
+        if (collision.collider.GetComponent<Hammer>() == null)
+            return;
+
+        Mole mole = transform.GetComponent<Mole>();
+
+        if (!mole.IsVisible())
+            return;
+
+        mole.OnHit();
+        GameObject.FindObjectOfType<Player>().score++;
+        Debug.Log(GameObject.FindObjectOfType<Player>().score);
+    }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log("Mole hit!");
+    //    if (other.GetComponent<Hammer>() == null)
+    //        return;
+
+    //    Mole mole = transform.GetComponent<Mole>();
+
+    //    if (!mole.IsVisible())
+    //        return;
+
+    //    mole.OnHit();
+    //    GameObject.FindObjectOfType<Player>().score++;
+    //    Debug.Log(GameObject.FindObjectOfType<Player>().score);
+    //}
 }

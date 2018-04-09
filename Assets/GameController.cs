@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour {
 		gameTimer -= Time.deltaTime;
 
 		if (gameTimer > 0f) {
-            infoText.text = "Hit all the moles!\nTime: " + Mathf.Floor(gameTimer) + "\nScore: "; //+ player.score;
+            infoText.text = "Hit all the moles!\nTime: " + Mathf.Floor(gameTimer) + "\nScore: " + player.score;
 
 			spawnTimer -= Time.deltaTime;
 			if (spawnTimer <= 0f) {
@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour {
 				spawnTimer = spawnDuration;
 			}
 		} else {
-            infoText.text = "Game over! \n Your score: ";// + Mathf.Floor (player.score);
+            infoText.text = "Game over! \n Your score: " + Mathf.Floor (player.score);
 
 			resetTimer -= Time.deltaTime;
 			if (resetTimer <= 0f) {
