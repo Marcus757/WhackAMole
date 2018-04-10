@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: 12eb6bec3eb9c984ea5b52eb8ccec326
+timeCreated: 1523372416
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Joystick_Color__Untitled
+    2100002: Joystick_Base_Color__Untitled
+    2100004: Green_Button_Color__Untitled
+    2100006: Red_Button_Color__Untitled
+    2100008: Blue_Button_Color__Untitled
+    2100010: Yellow_Button_Color__Untitled
+    2100012: Arcade_Base_001_Color__Untitled
+    2100014: Arcade_Machine_Screen_Color__Untitled
+    2100016: Control_Panel_Color__Untitled
+    2100018: Metal_Panel_Color__Untitled
+    2100020: Arcade_Game_Plate__Untitled
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cube_005
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arcade_Base_001_Color__Untitled
+    second: {fileID: 2100000, guid: b0e244f3370618a4dbc77b8bb047cb66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arcade_Game_Plate__Untitled
+    second: {fileID: 2100000, guid: 7babc6c7c7f93fe4a9ec051e9302d9b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arcade_Machine_Screen_Color__Untitled
+    second: {fileID: 2100000, guid: 04053041e1717794eb198524fb766771, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blue_Button_Color__Untitled
+    second: {fileID: 2100000, guid: 6eb1ef8d12e89aa4783d857ae2e78c4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Control_Panel_Color__Untitled
+    second: {fileID: 2100000, guid: 5686060f44ce2d44792ff3e297680748, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Green_Button_Color__Untitled
+    second: {fileID: 2100000, guid: 906624be2edd44143910f04b64e50d6b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Joystick_Base_Color__Untitled
+    second: {fileID: 2100000, guid: 92f7da40dfa3f1d41963af888fc83040, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Joystick_Color__Untitled
+    second: {fileID: 2100000, guid: 40a5cead9d4152e44bdc8deae25c7cad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_Panel_Color__Untitled
+    second: {fileID: 2100000, guid: 2bfeb6b5596a92b4a862e000a5951cbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red_Button_Color__Untitled
+    second: {fileID: 2100000, guid: 5566ced6d2db80e4994d98b043dd7f10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow_Button_Color__Untitled
+    second: {fileID: 2100000, guid: 6283af4dadc2a3944b0be599b2a2d715, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
