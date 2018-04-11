@@ -1,61 +1,101 @@
 fileFormatVersion: 2
-guid: 9944bc85492f04e4a914b2dbfba4736d
-timeCreated: 1523157457
+guid: 4940cf54ce034784e974dbb34c70134b
+timeCreated: 1523474142
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Light001
-    100004: Light002
-    100006: Light003
-    100008: Light004
-    100010: Light005
-    100012: Light006
-    100014: Roof
+    100002: Door Windows
+    100004: Doors
+    100006: Floor
+    100008: Lights001
+    100010: Lights002
+    100012: Roof
+    100014: Wall Decals
     100016: Walls
     400000: //RootNode
-    400002: Light001
-    400004: Light002
-    400006: Light003
-    400008: Light004
-    400010: Light005
-    400012: Light006
-    400014: Roof
+    400002: Door Windows
+    400004: Doors
+    400006: Floor
+    400008: Lights001
+    400010: Lights002
+    400012: Roof
+    400014: Wall Decals
     400016: Walls
-    2100000: Purple Light Color
-    2100002: Blue Light Color
-    2100004: Arcade Roof Color
-    2100006: Walls Color.001
+    2100000: Light Blue Light Color
+    2100002: Purple Light Color
+    2100004: Windows Color
+    2100006: Walls Color
     2100008: Floor Color
-    2100010: Walls Decals Color
+    2100010: Walls Decal Color
     2100012: Door Color
-    2100014: Window Color
-    2300000: Light001
-    2300002: Light002
-    2300004: Light003
-    2300006: Light004
-    2300008: Light005
-    2300010: Light006
-    2300012: Roof
+    2100014: Arcade Roof Color
+    2300000: Door Windows
+    2300002: Doors
+    2300004: Floor
+    2300006: Lights001
+    2300008: Lights002
+    2300010: Roof
+    2300012: Wall Decals
     2300014: Walls
-    3300000: Light001
-    3300002: Light002
-    3300004: Light003
-    3300006: Light004
-    3300008: Light005
-    3300010: Light006
-    3300012: Roof
+    3300000: Door Windows
+    3300002: Doors
+    3300004: Floor
+    3300006: Lights001
+    3300008: Lights002
+    3300010: Roof
+    3300012: Wall Decals
     3300014: Walls
-    4300000: Light006
-    4300002: Light005
-    4300004: Light003
-    4300006: Light004
-    4300008: Light002
-    4300010: Light001
-    4300012: Roof
-    4300014: Walls
-  externalObjects: {}
+    4300000: Lights002
+    4300002: Lights001
+    4300004: Door Windows
+    4300006: Walls
+    4300008: Floor
+    4300010: Wall Decals
+    4300012: Doors
+    4300014: Roof
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Arcade Roof Color
+    second: {fileID: 2100000, guid: 186cd47ccf0f9794c86492b1b6e2b01d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door Color
+    second: {fileID: 2100000, guid: 4c52890c40ab5f84b90f6bc6fea0a817, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor Color
+    second: {fileID: 2100000, guid: 17e4cced4f6b8e148a57278802402762, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light Blue Light Color
+    second: {fileID: 2100000, guid: d6238103d01ef6944935a7c95cd3ee39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Purple Light Color
+    second: {fileID: 2100000, guid: 6f2be74cf643d0e409547fa57aaf0546, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Walls Color
+    second: {fileID: 2100000, guid: 08687bd2d6b6dcc428bb09cd2dd4def0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Walls Decal Color
+    second: {fileID: 2100000, guid: cd3aa929cdb581a49b15dc55b7f304d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows Color
+    second: {fileID: 2100000, guid: 2edbfde2d80fff442ab4778d6c47414a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -93,7 +133,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
@@ -107,7 +147,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
