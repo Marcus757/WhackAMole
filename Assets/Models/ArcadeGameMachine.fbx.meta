@@ -1,134 +1,27 @@
 fileFormatVersion: 2
-guid: 8526d6edc47716f4e8be50c95aa62650
-timeCreated: 1523159923
+guid: a3a7f010633e4174d913b4f849b5480e
+timeCreated: 1523491149
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: ArcadeBase
-    100002: //RootNode
-    100004: ArcadeGamePlate
-    100006: Button001
-    100008: Button002
-    100010: Button003
-    100012: Button004
-    100014: ControlPanel
-    100016: Joystick
-    100018: JoystickBase
-    100020: MetalPanel
-    100022: Screen
-    400000: ArcadeBase
-    400002: //RootNode
-    400004: ArcadeGamePlate
-    400006: Button001
-    400008: Button002
-    400010: Button003
-    400012: Button004
-    400014: ControlPanel
-    400016: Joystick
-    400018: JoystickBase
-    400020: MetalPanel
-    400022: Screen
-    2100000: Blue Button Color
-    2100002: Red Button Color
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Joystick Color
+    2100002: Joystick Base Color
     2100004: Green Button Color
-    2100006: Joystick Base Color
-    2100008: Joystick Color
-    2100010: Arcade Game Plate
-    2100012: Metal Panel Color
-    2100014: Control Panel Color
-    2100016: Arcade Machine Screen Color
-    2100018: Arcade Base 001 Color
-    2100020: Yellow Button Color
-    2300000: ArcadeBase
-    2300002: ArcadeGamePlate
-    2300004: Button001
-    2300006: Button002
-    2300008: Button003
-    2300010: Button004
-    2300012: ControlPanel
-    2300014: Joystick
-    2300016: JoystickBase
-    2300018: MetalPanel
-    2300020: Screen
-    3300000: ArcadeBase
-    3300002: ArcadeGamePlate
-    3300004: Button001
-    3300006: Button002
-    3300008: Button003
-    3300010: Button004
-    3300012: ControlPanel
-    3300014: Joystick
-    3300016: JoystickBase
-    3300018: MetalPanel
-    3300020: Screen
-    4300000: Button003
-    4300002: Button002
-    4300004: Button001
-    4300006: JoystickBase
-    4300008: Joystick
-    4300010: ArcadeGamePlate
-    4300012: MetalPanel
-    4300014: ControlPanel
-    4300016: Screen
-    4300018: ArcadeBase
-    4300020: Button004
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Arcade Base 001 Color
-    second: {fileID: 2100000, guid: 7d6502263cb310e47bbd79176ad8c3fe, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Arcade Game Plate
-    second: {fileID: 2100000, guid: 7babc6c7c7f93fe4a9ec051e9302d9b5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Arcade Machine Screen Color
-    second: {fileID: 2100000, guid: 04053041e1717794eb198524fb766771, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Blue Button Color
-    second: {fileID: 2100000, guid: 6eb1ef8d12e89aa4783d857ae2e78c4b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Control Panel Color
-    second: {fileID: 2100000, guid: 5686060f44ce2d44792ff3e297680748, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Green Button Color
-    second: {fileID: 2100000, guid: 906624be2edd44143910f04b64e50d6b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Joystick Base Color
-    second: {fileID: 2100000, guid: 92f7da40dfa3f1d41963af888fc83040, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Joystick Color
-    second: {fileID: 2100000, guid: 40a5cead9d4152e44bdc8deae25c7cad, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal Panel Color
-    second: {fileID: 2100000, guid: 2bfeb6b5596a92b4a862e000a5951cbb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Red Button Color
-    second: {fileID: 2100000, guid: 5566ced6d2db80e4994d98b043dd7f10, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Yellow Button Color
-    second: {fileID: 2100000, guid: 6283af4dadc2a3944b0be599b2a2d715, type: 2}
+    2100006: Red Button Color
+    2100008: Blue Button Color
+    2100010: Yellow Button Color
+    2100012: Arcade Base 001 Color
+    2100014: Arcade Machine Screen Color
+    2100016: Control Panel Color
+    2100018: Metal Panel Color
+    2100020: Arcade Game Plate
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Cube.005
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
@@ -181,7 +74,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 0
+    tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
