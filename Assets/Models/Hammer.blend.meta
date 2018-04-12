@@ -1,17 +1,19 @@
 fileFormatVersion: 2
-guid: bcd1759de97700a4ea3e1127c2324183
-timeCreated: 1522942100
+guid: 6ccfbfd17bfcba749b11d939d7647647
+timeCreated: 1523506293
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Hammer Head Color
-    2100002: Hammer Handle Color
+    2100000: Hammer_Head_Color
+    2100002: Hammer_Handle_Color
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder.001
+    4300000: Cylinder_001
+    7400000: Default Take
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -86,7 +88,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
