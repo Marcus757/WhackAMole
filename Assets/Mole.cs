@@ -31,6 +31,10 @@ public class Mole : MonoBehaviour {
             Hide();
         }
 
+        //var pos = transform.localPosition;
+        //pos.y = Mathf.Clamp(transform.localPosition.y, hiddenHeight, visibleHeight);
+        //transform.localPosition = pos;
+
         transform.localPosition = Vector3.Lerp(
             transform.localPosition,
             targetPosition,
@@ -70,26 +74,10 @@ public class Mole : MonoBehaviour {
         return isVisible;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Mole hit!");
-        if (collision.collider.GetComponent<Hammer>() == null)
-            return;
-
-        Mole mole = transform.GetComponent<Mole>();
-
-        if (!mole.IsVisible())
-            return;
-
-        mole.OnHit();
-        GameObject.FindObjectOfType<Player>().score++;
-        Debug.Log(GameObject.FindObjectOfType<Player>().score);
-    }
-
-    //private void OnTriggerEnter(Collider other)
+    //private void OnCollisionEnter(Collision collision)
     //{
-    //    Debug.Log("Mole hit!");
-    //    if (other.GetComponent<Hammer>() == null)
+    //    Debug.Log("Mole hit by " + collision.collider.name);
+    //    if (collision.collider.GetComponent<Hammer>() == null)
     //        return;
 
     //    Mole mole = transform.GetComponent<Mole>();
@@ -101,4 +89,22 @@ public class Mole : MonoBehaviour {
     //    GameObject.FindObjectOfType<Player>().score++;
     //    Debug.Log(GameObject.FindObjectOfType<Player>().score);
     //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Mole hit by " + other.name);
+        Debug.Log(other.GetComponent<Hammer>().name);
+
+        if (other.GetComponent<Hammer>() == null)
+            return;
+
+        Mole mole = transform.GetComponent<Mole>();
+
+        if (!mole.IsVisible())
+            return;
+
+        mole.OnHit();
+        GameObject.FindObjectOfType<Player>().score++;
+        Debug.Log(GameObject.FindObjectOfType<Player>().score);
+    }
 }
