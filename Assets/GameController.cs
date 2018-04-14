@@ -8,56 +8,97 @@ public class GameController : MonoBehaviour {
 	public GameObject moleContainer;
 	public Player player;
 	public Text infoText;
-	public float spawnDuration = 1.5f;
+    public static int level = 1;
+	public float spawnDuration;
 	public float spawnDecrement = 0.1f;
 	public float minimumSpawnDuration = 0.5f;
-	public float gameTimer = 15f;
+	public float gameTimer;
 
 	private Mole[] moles;
-	private float spawnTimer = 0f;
-	private float resetTimer = 3f;
+	private float spawnTimer;
+	private float resetTimer;
+    private float countdownTimer;
+    private bool isGameInProgress;
 
 	// Use this for initialization
 	void Start () {
 		moles = moleContainer.GetComponentsInChildren<Mole> ();
-	}
+        infoText.text = "Grab the hammer and get ready!";
+        isGameInProgress = false;
+        countdownTimer = 10f;
+        resetTimer = 5f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		gameTimer -= Time.deltaTime;
-
-		if (gameTimer > 0f) {
-            infoText.text = "Hit all the moles!\nTime: " + Mathf.Floor(gameTimer) + "\nScore: " + player.score;
-
-			spawnTimer -= Time.deltaTime;
-			if (spawnTimer <= 0f) {
-				moles [Random.Range (0, moles.Length)].Rise ();
-
-				spawnDuration -= spawnDecrement;
-				if (spawnDuration < minimumSpawnDuration) {
-					spawnDuration = minimumSpawnDuration;
-				}
-
-				spawnTimer = spawnDuration;
-			}
-		} else {
-            infoText.text = "Game over! \n Your score: " + Mathf.Floor (player.score);
-
-			resetTimer -= Time.deltaTime;
-			if (resetTimer <= 0f) {
-                ResetGame();
-			}
-		}
-
         if (OVRInput.GetDown(OVRInput.Button.One))
-        {
             ResetGame();
+
+        if (!isGameInProgress && IsHammerGrabbed())
+            isGameInProgress = true;
+
+        if (!isGameInProgress)
+            return;
+
+        if (countdownTimer > 0)
+        {
+            infoText.text = Mathf.Floor(countdownTimer).ToString();
+            countdownTimer -= Time.deltaTime;
+            return;
         }
-	}
+
+        gameTimer -= Time.deltaTime;
+
+        if (gameTimer > 0f) {
+            infoText.text = "Time: " + Mathf.Floor(gameTimer) + "\nScore: " + player.score + "\nLevel: " + level;
+
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer <= 0f) {
+                moles[Random.Range(0, moles.Length)].Rise();
+
+                spawnDuration -= spawnDecrement;
+                if (spawnDuration < minimumSpawnDuration) {
+                    spawnDuration = minimumSpawnDuration;
+                }
+
+                spawnTimer = spawnDuration;
+            }
+        }
+        else
+        {
+            infoText.text = "Game over! \nYour score: " + Mathf.Floor(player.score);
+            resetTimer -= Time.deltaTime;
+
+            if (resetTimer <= 0f) {
+                ChangeLevel();
+                ResetGame();
+            }
+        }
+    }
 
     public void ResetGame()
     {
         OVRInput.RecenterController();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private bool IsHammerGrabbed()
+    {
+        OVRGrabber[] grabbers = GameObject.FindObjectsOfType<OVRGrabber>();
+        foreach (var grabber in grabbers)
+        {
+            if (grabber.grabbedObject.GetComponent<Hammer>() != null)
+                return true;
+        }
+
+        return false;
+    }
+
+    private void ChangeLevel()
+    {
+        if (level == 3)
+            level = 1;
+        else
+            level++;
     }
 }

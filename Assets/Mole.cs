@@ -6,11 +6,15 @@ public class Mole : MonoBehaviour {
     public float visibleHeight = 0.2f;
     public float hiddenHeight = -0.3f;
     public float speed = 4f;
-    public float disappearDuration = .5f; 
+    public float disappearDuration; 
     
     private Vector3 targetPosition;
     private float disappearTimer = 0f;
     private bool isVisible = false;
+
+
+    private float disapperDecrement = .1f;
+    public float minimumDisappearDuration = 1.25f;
 
     private void Awake()
     {
@@ -23,23 +27,22 @@ public class Mole : MonoBehaviour {
         transform.localPosition = targetPosition;
     }
 
+    private void Start()
+    {
+        ChangeDisappearDuration();        
+    }
+
     // Update is called once per frame
     void Update () {
         disappearTimer -= Time.deltaTime;
         if (disappearTimer < 0f)
-        {
             Hide();
-        }
-
-        //var pos = transform.localPosition;
-        //pos.y = Mathf.Clamp(transform.localPosition.y, hiddenHeight, visibleHeight);
-        //transform.localPosition = pos;
 
         transform.localPosition = Vector3.Lerp(
             transform.localPosition,
             targetPosition,
             Time.deltaTime * speed
-            );
+            );        
 	}
 
     public void OnHit()
@@ -66,6 +69,11 @@ public class Mole : MonoBehaviour {
             );
 
         disappearTimer = disappearDuration;
+        disappearDuration -= disapperDecrement;
+
+        if (disappearDuration < minimumDisappearDuration)
+            disappearDuration = minimumDisappearDuration;
+
         isVisible = true;
     }
 
@@ -74,27 +82,8 @@ public class Mole : MonoBehaviour {
         return isVisible;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("Mole hit by " + collision.collider.name);
-    //    if (collision.collider.GetComponent<Hammer>() == null)
-    //        return;
-
-    //    Mole mole = transform.GetComponent<Mole>();
-
-    //    if (!mole.IsVisible())
-    //        return;
-
-    //    mole.OnHit();
-    //    GameObject.FindObjectOfType<Player>().score++;
-    //    Debug.Log(GameObject.FindObjectOfType<Player>().score);
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Mole hit by " + other.name);
-        Debug.Log(other.GetComponent<Hammer>().name);
-
         if (other.GetComponent<Hammer>() == null)
             return;
 
@@ -105,6 +94,23 @@ public class Mole : MonoBehaviour {
 
         mole.OnHit();
         GameObject.FindObjectOfType<Player>().score++;
-        Debug.Log(GameObject.FindObjectOfType<Player>().score);
+    }
+
+    private void ChangeDisappearDuration()
+    {
+        switch (GameController.level)
+        {
+            case 1:
+                goto default;
+            case 2:
+                minimumDisappearDuration = .85f;
+                break;
+            case 3:
+                minimumDisappearDuration = .45f;
+                break;
+            default:
+                minimumDisappearDuration = 1.25f;
+                break;
+        }
     }
 }
