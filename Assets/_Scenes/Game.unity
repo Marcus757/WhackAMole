@@ -561,6 +561,7 @@ MonoBehaviour:
   spawnDecrement: 0.1
   minimumSpawnDuration: 0.5
   gameTimer: 60
+  isGameInProgress: 0
 --- !u!4 &296328014
 Transform:
   m_ObjectHideFlags: 0
@@ -1344,7 +1345,7 @@ Transform:
   m_GameObject: {fileID: 649467264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.685, y: 1.094, z: -3.655}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.39941424, y: 0.39941424, z: 0.39941424}
   m_Children:
   - {fileID: 634608488}
   m_Father: {fileID: 0}

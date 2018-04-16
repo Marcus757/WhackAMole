@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
+using SimpleJSON;
+
 
 public class GameController : MonoBehaviour {
 
@@ -19,6 +21,7 @@ public class GameController : MonoBehaviour {
 	private float resetTimer;
     private float countdownTimer;
     public bool isGameInProgress;
+    private string scoreFileName;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +30,7 @@ public class GameController : MonoBehaviour {
         isGameInProgress = false;
         countdownTimer = 10f;
         resetTimer = 5f;
+        scoreFileName = "scores.txt";
     }
 	
 	// Update is called once per frame
@@ -69,10 +73,17 @@ public class GameController : MonoBehaviour {
             infoText.text = "Game over! \nYour score: " + Mathf.Floor(player.score);
             resetTimer -= Time.deltaTime;
 
-            if (resetTimer <= 0f) {
-                ChangeLevel();
-                ResetGame();
+            if (resetTimer > 0f)
+                return;
+
+            if (level == 3)
+            {
+                Score score = new Score(Player.totalScore, "MSN", System.DateTime.Now.Date);
+                score.SaveToFile(scoreFileName);
             }
+            
+            ChangeLevel();
+            ResetGame();
         }
     }
 
