@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour {
         OVRGrabber[] grabbers = GameObject.FindObjectsOfType<OVRGrabber>();
         foreach (var grabber in grabbers)
         {
-            if (grabber.grabbedObject.GetComponent<Hammer>() != null)
+            if (grabber.grabbedObject != null && grabber.grabbedObject.GetComponent<Hammer>() != null)
                 return true;
         }
 

@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moleContainer: {fileID: 856348712}
-  player: {fileID: 0}
+  player: {fileID: 649467269}
   infoText: {fileID: 702818319}
   spawnDuration: 1.5
   spawnDecrement: 0.1
@@ -1954,7 +1954,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4480485801523258, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.892
+      value: 2.0732
       objectReference: {fileID: 0}
     - target: {fileID: 4480485801523258, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1987,15 +1987,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4480485801523258, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
       propertyPath: m_LocalScale.x
-      value: 13.470034
+      value: 29.50109
       objectReference: {fileID: 0}
     - target: {fileID: 4480485801523258, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
       propertyPath: m_LocalScale.y
-      value: 13.470036
+      value: 29.5011
       objectReference: {fileID: 0}
     - target: {fileID: 4480485801523258, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
       propertyPath: m_LocalScale.z
-      value: 15.953909
+      value: 34.9411
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65045072572614392, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
@@ -3004,7 +3004,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 923879706
+  randomSeed: -578644055
   InitialModule:
     serializedVersion: 3
     enabled: 1
