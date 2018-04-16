@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     public int score = 0;
+    public static int totalScore = 0;
     public Hammer hammer;
 
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
+    void Start () {
+        if (GameController.level == 1)
+            totalScore = 0;
 	}
 
     // Update is called once per frame

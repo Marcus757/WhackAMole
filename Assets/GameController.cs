@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour {
 	private float spawnTimer;
 	private float resetTimer;
     private float countdownTimer;
-    private bool isGameInProgress;
+    public bool isGameInProgress;
 
 	// Use this for initialization
 	void Start () {
@@ -34,8 +34,8 @@ public class GameController : MonoBehaviour {
         if (OVRInput.GetDown(OVRInput.Button.One))
             ResetGame();
 
-        if (!isGameInProgress && IsHammerGrabbed())
-            isGameInProgress = true;
+        //if (!isGameInProgress && IsHammerGrabbed())
+        //    isGameInProgress = true;
 
         if (!isGameInProgress)
             return;
@@ -80,6 +80,9 @@ public class GameController : MonoBehaviour {
     {
         OVRInput.RecenterController();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if (level == 1)
+            Player.totalScore = 0;
     }
 
     private bool IsHammerGrabbed()
