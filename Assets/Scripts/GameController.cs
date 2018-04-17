@@ -55,20 +55,23 @@ public class GameController : MonoBehaviour {
 
         if (gameTimer > 0f) {
             infoText.text = "Time: " + Mathf.Floor(gameTimer) + "\nScore: " + player.score + "\nLevel: " + level;
-
             spawnTimer -= Time.deltaTime;
+
             if (spawnTimer <= 0f) {
                 moles[Random.Range(0, moles.Length)].Rise();
-
                 spawnDuration -= spawnDecrement;
+
                 if (spawnDuration < minimumSpawnDuration) {
                     spawnDuration = minimumSpawnDuration;
                 }
 
                 spawnTimer = spawnDuration;
             }
+
+            return;
         }
-        else
+
+        if (gameTimer <= 0f)
         {
             infoText.text = "Game over! \nYour score: " + Mathf.Floor(player.score);
             resetTimer -= Time.deltaTime;
@@ -76,10 +79,14 @@ public class GameController : MonoBehaviour {
             if (resetTimer > 0f)
                 return;
 
-            if (level == 3)
+            if (level == 1)
+            //if (level == 3)
             {
-                Score score = new Score(Player.totalScore, "MSN", System.DateTime.Now.Date);
-                score.SaveToFile(scoreFileName);
+                Score score = (Score) JSONNode.LoadFromFile(scoreFileName);
+                score["initials"].Value
+                temp[]
+                var temp2 = JSONNode.Parse(temp);
+                SaveScore(Player.totalScore, "MSN", System.DateTime.Now.Date); ;
             }
             
             ChangeLevel();
@@ -114,5 +121,14 @@ public class GameController : MonoBehaviour {
             level = 1;
         else
             level++;
+    }
+
+    private void SaveScore(int totalScore, string initials, System.DateTime date)
+    {
+        JSONClass score = new JSONClass();
+        score.Add("score", new JSONData(score));
+        score.Add("initials", new JSONData(initials));
+        score.Add("date", new JSONData(date.ToString()));
+        score.SaveToFile(scoreFileName);
     }
 }

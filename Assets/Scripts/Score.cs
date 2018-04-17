@@ -4,11 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleJSON;
 
-public class Score : JSONClass  {
-    public Score(int _score, string _initials, DateTime _date)
+public class Score : JSONNode
+{
+    public override string ToJSON(int prefix)
     {
-        Add("score", new JSONData(_score));
-        Add("initials", new JSONData(_initials));
-        Add("date", new JSONData(_date.ToString()));
+        throw new NotImplementedException();
     }
+
+    public int GetScore()
+    {
+        return this["score"].AsInt;
+    }
+
+    public string GetInitials()
+    {
+        return this["initials"].Value;
+    }
+
+    public 
 }
