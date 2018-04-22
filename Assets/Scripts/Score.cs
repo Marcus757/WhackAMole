@@ -21,5 +21,8 @@ public class Score : JSONNode
         return this["initials"].Value;
     }
 
-    public 
+    public string GetDate()
+    {
+        return this["date"].Value;
+    }
 }
