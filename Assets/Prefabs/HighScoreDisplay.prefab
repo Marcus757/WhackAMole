@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 114822795262850602}
   - component: {fileID: 114537787744976934}
   m_Layer: 0
-  m_Name: TopScoreListDisplay
+  m_Name: HighScoreDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
