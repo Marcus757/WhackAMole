@@ -4,33 +4,51 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HighScoreDisplay : MonoBehaviour {
-    private Text rank;
-    private Text score;
-    private Text name;
-    private Text date;
+    public Text rank;
+    public Text score;
+    public Text name;
+    public Text date;
     private HighScore highScore;
-    
-	// Use this for initialization
-	void Start () {
 
+    private void Awake()
+    {
+        Text[] textFields = GetComponentsInChildren<Text>();
+        foreach (Text textField in textFields)
+        {
+            switch (textField.name)
+            {
+                case "Rank":
+                    rank = textField;
+                    break;
+                case "Score":
+                    score = textField;
+                    break;
+                case "Name":
+                    name = textField;
+                    break;
+                case "Date":
+                    date = textField;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    public void LoadHighScore(HighScore _highScore)
+    public void LoadHighScore(HighScore _highScore, int rankCount)
     {
         highScore = _highScore;
 
         if (score != null)
-            score.text = _highScore.Score.ToString();
+            score.text = highScore.Score.ToString();
 
         if (name != null)
-            name.text = _highScore.Name.ToString();
+            name.text = highScore.Name.ToString();
 
         if (date != null)
-            date.text = _highScore.Date.ToString("MM/dd/yyyy");
+            date.text = highScore.Date.ToString("MM/dd/yyyy");
+
+        if (rank != null)
+            rank.text = rankCount.ToString();
     }
 }

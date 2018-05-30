@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScoreLeaderboardDisplay : MonoBehaviour {
     public Transform targetTransform;
     public HighScoreDisplay highScoreDisplayPrefab;
+    private int rank = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,9 @@ public class ScoreLeaderboardDisplay : MonoBehaviour {
         foreach (HighScore highScore in highScores)
         {
             HighScoreDisplay highScoreDisplay = (HighScoreDisplay)Instantiate(highScoreDisplayPrefab);
+            highScoreDisplay.transform.SetParent(targetTransform, false);
+            highScoreDisplay.LoadHighScore(highScore, rank);
+            rank++;
         }
     }
 

@@ -4,6 +4,9 @@ using System.Collections;
 using UnityEngine.UI;
 using SimpleJSON;
 using System.Collections.Generic;
+using System;
+using System.Linq;
+using SQLiter;
 
 public class GameController : MonoBehaviour {
 
@@ -15,13 +18,16 @@ public class GameController : MonoBehaviour {
 	public float spawnDecrement = 0.1f;
 	public float minimumSpawnDuration = 0.5f;
 	public float gameTimer;
+    public ScoreLeaderboard scoreLeaderboardPrefab;
+    public SQLite sqlLite;
 
-	private Mole[] moles;
+    private Mole[] moles;
 	private float spawnTimer;
 	private float resetTimer;
     private float countdownTimer;
-    public bool isGameInProgress;
+    private bool isGameInProgress;
     private string scoreFileName;
+    private bool areScoresDisplayed = false;
 
 	// Use this for initialization
 	void Start () {
@@ -31,16 +37,15 @@ public class GameController : MonoBehaviour {
         countdownTimer = 10f;
         resetTimer = 5f;
         scoreFileName = "scores.txt";
-        LoadScores();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (OVRInput.GetDown(OVRInput.Button.One))
-            ResetGame();
+        if (player.IsResetGamePressed())
+            player.ResetGame();
 
-        //if (!isGameInProgress && IsHammerGrabbed())
-        //    isGameInProgress = true;
+        if (!isGameInProgress && player.IsHammerGrabbed())
+            isGameInProgress = true;
 
         if (!isGameInProgress)
             return;
@@ -59,7 +64,7 @@ public class GameController : MonoBehaviour {
             spawnTimer -= Time.deltaTime;
 
             if (spawnTimer <= 0f) {
-                moles[Random.Range(0, moles.Length)].Rise();
+                moles[UnityEngine.Random.Range(0, moles.Length)].Rise();
                 spawnDuration -= spawnDecrement;
 
                 if (spawnDuration < minimumSpawnDuration) {
@@ -83,35 +88,21 @@ public class GameController : MonoBehaviour {
             if (level == 1)
             //if (level == 3)
             {
-                //Score score = (Score) JSONNode.LoadFromFile(scoreFileName);
-                LoadScores();
-                SaveScore(Player.totalScore, "NWA", System.DateTime.Now.Date); ;
+                if (!areScoresDisplayed)
+                    LoadScores();
+
+                //SaveScore(Player.totalScore, "NWA", System.DateTime.Now.Date); 
             }
-            
+
+            if (player.IsEnterPressed())
+                areScoresDisplayed = false;
+
+            if (areScoresDisplayed)
+                return;
+
             ChangeLevel();
-            ResetGame();
+            player.ResetGame();
         }
-    }
-
-    public void ResetGame()
-    {
-        OVRInput.RecenterController();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-        if (level == 1)
-            Player.totalScore = 0;
-    }
-
-    private bool IsHammerGrabbed()
-    {
-        OVRGrabber[] grabbers = GameObject.FindObjectsOfType<OVRGrabber>();
-        foreach (var grabber in grabbers)
-        {
-            if (grabber.grabbedObject != null && grabber.grabbedObject.GetComponent<Hammer>() != null)
-                return true;
-        }
-
-        return false;
     }
 
     private void ChangeLevel()
@@ -122,33 +113,40 @@ public class GameController : MonoBehaviour {
             level++;
     }
 
-    private void SaveScore(int totalScore, string initials, System.DateTime date)
+    private void SaveScore(int score, string initials, System.DateTime date)
     {
-        JSONClass score = new JSONClass();
-        score.Add("score", new JSONData(score));
-        score.Add("initials", new JSONData(initials));
-        score.Add("date", new JSONData(date.ToString()));
-        score.SaveToFile(scoreFileName);
+        //JSONClass highScore = new JSONClass();
+        //highScore.Add("score", new JSONData(score));
+        //highScore.Add("initials", new JSONData(initials));
+        //highScore.Add("date", new JSONData(date.ToString()));
+        //highScore.SaveToFile(scoreFileName);
     }
 
     private void LoadScores()
     {
-        ScoreLeaderboard scoreLeaderboard = new ScoreLeaderboard();
-        scoreLeaderboard.highScores = new List<HighScore>();
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 134, Name = "MSN", Date = System.DateTime.Now.AddDays(320) });
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 400, Name = "CCM", Date = System.DateTime.Now.AddDays(720) });
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 45, Name = "MNO", Date = System.DateTime.Now.AddDays(-720) });
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 100, Name = "JKL", Date = System.DateTime.Now.AddDays(-400) });
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 200, Name = "MSN", Date = System.DateTime.Now.AddDays(365) });
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 50, Name = "GHI", Date = System.DateTime.Now.AddDays(-100) });
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 75, Name = "TAM", Date = System.DateTime.Now.AddDays(100) });
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 30, Name = "DEF", Date = System.DateTime.Now });
-        scoreLeaderboard.highScores.Add(new HighScore { Score = 225, Name = "ABC", Date = System.DateTime.Now });
-
-        foreach (var highScore in scoreLeaderboard.highScores)
-        {
-            HighScoreDisplay highScoreDisplay = GameObject.FindObjectOfType<HighScoreDisplay>();
-            highScoreDisplay.LoadHighScore(highScore);
-        }
+        List<HighScore> highScores = sqlLite.GetAllHighScores();
+        //highScores = highScores.OrderByDescending(highScore => highScore.Score).Take(10).ToList();
+        ScoreLeaderboard scoreLeaderboard = (ScoreLeaderboard)Instantiate(scoreLeaderboardPrefab);
+        scoreLeaderboard.LoadScores(highScores);
+        areScoresDisplayed = true;
     }
+
+    #region Testing
+    private List<HighScore> GetMockTestScores()
+    {
+        List<HighScore> highScores = new List<HighScore>();
+        highScores.Add(new HighScore(1, 134, "MSN", DateTime.Now.AddDays(320)));
+        highScores.Add(new HighScore(2, 400, "CCM", DateTime.Now.AddDays(720)));
+        highScores.Add(new HighScore(3, 45, "MNO", DateTime.Now.AddDays(-720)));
+        highScores.Add(new HighScore(4, 100, "JKL", DateTime.Now.AddDays(-400)));
+        highScores.Add(new HighScore(5, 200, "MSN", DateTime.Now.AddDays(365)));
+        highScores.Add(new HighScore(6, 50, "GHI", DateTime.Now.AddDays(-100)));
+        highScores.Add(new HighScore(7, 75, "TAM", DateTime.Now.AddDays(100)));
+        highScores.Add(new HighScore(8, 30, "DEF", DateTime.Now));
+        highScores.Add(new HighScore(9, 225, "ABC", DateTime.Now));
+        highScores.Add(new HighScore(10, 125, "BFF", DateTime.Now));
+        return highScores;
+    }
+    #endregion
+
 }

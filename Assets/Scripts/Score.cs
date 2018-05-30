@@ -13,7 +13,7 @@ public class Score : JSONNode
 
     public int GetScore()
     {
-        return this["score"].AsInt;
+        return this["score"].AsInt;                                                                  
     }
 
     public string GetInitials()
