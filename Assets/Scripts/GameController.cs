@@ -88,6 +88,13 @@ public class GameController : MonoBehaviour {
             if (level == 1)
             //if (level == 3)
             {
+                // Compare player's score with high scores
+                // If player's score ranks in top ten, then present player with initials input ui.
+                // If player's score does not rank in top then display high scores
+                // Player enters initials and player's score gets saved to db.
+                // High scores are then retrieved from database and displayed on screen
+                
+
                 if (!areScoresDisplayed)
                     LoadScores();
 
