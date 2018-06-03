@@ -604,6 +604,8 @@ MonoBehaviour:
   gameTimer: 10
   scoreLeaderboardPrefab: {fileID: 114870486927618904, guid: fb025e14c10fd1d45aff9f47c57dc101,
     type: 2}
+  newHighScoreDisplayPrefab: {fileID: 114233864675121148, guid: 9260a4fb15324b44cb41f206a860a96a,
+    type: 2}
   sqlLite: {fileID: 280239213}
 --- !u!4 &296328014
 Transform:

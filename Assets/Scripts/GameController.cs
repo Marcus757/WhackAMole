@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
 	public float minimumSpawnDuration = 0.5f;
 	public float gameTimer;
     public ScoreLeaderboard scoreLeaderboardPrefab;
+    public NewHighScoreDisplay newHighScoreDisplayPrefab;
     public SQLite sqlLite;
 
     private Mole[] moles;
@@ -28,9 +29,11 @@ public class GameController : MonoBehaviour {
     private bool isGameInProgress;
     private string scoreFileName;
     private bool areScoresDisplayed = false;
+    private List<HighScore> highScores;
+    private bool isNewHighScoreUIDisplayed = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		moles = moleContainer.GetComponentsInChildren<Mole> ();
         infoText.text = "Grab the hammer and get ready!";
         isGameInProgress = false;
@@ -89,11 +92,18 @@ public class GameController : MonoBehaviour {
             //if (level == 3)
             {
                 // Compare player's score with high scores
+                highScores = sqlLite.GetAllHighScores();
+                if (!isNewHighScoreUIDisplayed && IsPlayerScoreNewHighScore(player.score, highScores))
+                    ShowNewHighScoreUI();
+
+                if (!newHighScoreDisplayPrefab.areInitialsEntered)
+                    return;
+
                 // If player's score ranks in top ten, then present player with initials input ui.
                 // If player's score does not rank in top then display high scores
                 // Player enters initials and player's score gets saved to db.
                 // High scores are then retrieved from database and displayed on screen
-                
+
 
                 if (!areScoresDisplayed)
                     LoadScores();
@@ -136,6 +146,17 @@ public class GameController : MonoBehaviour {
         ScoreLeaderboard scoreLeaderboard = (ScoreLeaderboard)Instantiate(scoreLeaderboardPrefab);
         scoreLeaderboard.LoadScores(highScores);
         areScoresDisplayed = true;
+    }
+
+    private bool IsPlayerScoreNewHighScore(int score, List<HighScore> scores)
+    {
+        return true;
+    }
+
+    private void ShowNewHighScoreUI()
+    {
+        NewHighScoreDisplay newHighScoreDisplay = Instantiate(newHighScoreDisplayPrefab);
+        isNewHighScoreUIDisplayed = true;
     }
 
     #region Testing
