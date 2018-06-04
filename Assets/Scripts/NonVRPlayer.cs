@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NonVRPlayer : Player {
+    public void Update()
+    {
+        //RaycastHit vHit = new RaycastHit();
+        Ray vRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+    }
+
     public override void ResetGame()
     {
         OVRInput.RecenterController();
