@@ -19,7 +19,7 @@ public class HighScore : MonoBehaviour {
         this.Date = date;
     }
 
-    public HighScore(int score)
+    public void LoadScore(int score)
     {
         this.Score = score;
     }

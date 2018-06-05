@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour {
 	public float gameTimer;
     public ScoreLeaderboard scoreLeaderboardPrefab;
     public SQLite sqlLite;
+    public HighScore highScorePrefab;
 
     private Mole[] moles;
 	private float spawnTimer;
@@ -41,10 +42,12 @@ public class GameController : MonoBehaviour {
         resetTimer = 5f;
         scoreFileName = "scores.txt";
         highScore = null;
+        player.score = GetRandomScore();
     }
 	
 	// Update is called once per frame
 	void Update () {
+
         if (player.IsResetGamePressed())
             player.ResetGame();
 
@@ -167,8 +170,8 @@ public class GameController : MonoBehaviour {
 
     private void ShowNewHighScoreUI()
     {
-        player.score = GetRandomScore();
-        highScore = new HighScore(player.score);
+        highScore = (HighScore)Instantiate(highScorePrefab);
+        highScore.LoadScore(player.score);
         highScore.ShowNewHighScoreUI();
         isNewHighScoreUIDisplayed = true;
     }

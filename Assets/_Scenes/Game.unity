@@ -605,6 +605,8 @@ MonoBehaviour:
   scoreLeaderboardPrefab: {fileID: 114870486927618904, guid: fb025e14c10fd1d45aff9f47c57dc101,
     type: 2}
   sqlLite: {fileID: 280239213}
+  highScorePrefab: {fileID: 114434202715581304, guid: f9fb304b3ea1f18478b24a30afc41a36,
+    type: 2}
 --- !u!4 &296328014
 Transform:
   m_ObjectHideFlags: 0
