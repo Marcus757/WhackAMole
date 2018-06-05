@@ -96,11 +96,16 @@ public class GameController : MonoBehaviour {
                 if (!isNewHighScoreUIDisplayed && IsPlayerScoreNewHighScore(player.score, highScores))
                     ShowNewHighScoreUI();
 
-                if (isNewHighScoreUIDisplayed && !NewHighScoreDisplay.areInitialsEntered)
-                    return;
+                if (isNewHighScoreUIDisplayed)
+                {
+                    if (!NewHighScoreDisplay.areInitialsEntered)
+                        return;
 
-
-
+                    // Save player's score to db
+                    // Destroy UI and set isNewHighScoreUIDisplayed to false
+                    // Need to add something to prevent ShowNewHighScoreUI from displaying again after saving score
+                }
+                        
                 // If player's score ranks in top ten, then present player with initials input ui.
                 // If player's score does not rank in top then display high scores
                 // Player enters initials and player's score gets saved to db.
