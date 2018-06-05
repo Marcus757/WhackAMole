@@ -96,8 +96,10 @@ public class GameController : MonoBehaviour {
                 if (!isNewHighScoreUIDisplayed && IsPlayerScoreNewHighScore(player.score, highScores))
                     ShowNewHighScoreUI();
 
-                if (!newHighScoreDisplayPrefab.areInitialsEntered)
+                if (isNewHighScoreUIDisplayed && !NewHighScoreDisplay.areInitialsEntered)
                     return;
+
+
 
                 // If player's score ranks in top ten, then present player with initials input ui.
                 // If player's score does not rank in top then display high scores

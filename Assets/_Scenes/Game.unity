@@ -526,7 +526,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &292704743 stripped
 GameObject:
@@ -604,7 +604,7 @@ MonoBehaviour:
   gameTimer: 10
   scoreLeaderboardPrefab: {fileID: 114870486927618904, guid: fb025e14c10fd1d45aff9f47c57dc101,
     type: 2}
-  newHighScoreDisplayPrefab: {fileID: 114233864675121148, guid: 9260a4fb15324b44cb41f206a860a96a,
+  newHighScoreDisplayPrefab: {fileID: 114903905754242156, guid: 9260a4fb15324b44cb41f206a860a96a,
     type: 2}
   sqlLite: {fileID: 280239213}
 --- !u!4 &296328014
@@ -6791,7 +6791,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1847935852
 Prefab:
