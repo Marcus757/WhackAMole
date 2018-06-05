@@ -10,6 +10,7 @@ public class HighScoreDisplay : MonoBehaviour {
     public Text date;
     private HighScore highScore;
 
+
     private void Awake()
     {
         Text[] textFields = GetComponentsInChildren<Text>();

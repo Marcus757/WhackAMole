@@ -399,6 +399,23 @@ namespace SQLiter
         }
         #endregion
 
+        public void DeleteAllScores()
+        {
+            foreach (HighScore highScore in GetAllHighScores())
+            {
+                DeleteHighScore(highScore.Rank);
+            }
+        }
+
+        public void SaveScores(List<HighScore> highScores)
+        {
+            foreach (HighScore highScore in highScores)
+            {
+                InsertHighScore(highScore.Rank, highScore.Score, highScore.Name, highScore.Date);
+            }
+        }
+
+
         /// <summary>
         /// Basic execute command - open, create command, execute, close
         /// </summary>

@@ -19,7 +19,6 @@ public class GameController : MonoBehaviour {
 	public float minimumSpawnDuration = 0.5f;
 	public float gameTimer;
     public ScoreLeaderboard scoreLeaderboardPrefab;
-    public NewHighScoreDisplay newHighScoreDisplayPrefab;
     public SQLite sqlLite;
 
     private Mole[] moles;
@@ -31,15 +30,17 @@ public class GameController : MonoBehaviour {
     private bool areScoresDisplayed = false;
     private List<HighScore> highScores;
     private bool isNewHighScoreUIDisplayed = false;
+    private HighScore highScore;
 
     // Use this for initialization
     void Start () {
-		moles = moleContainer.GetComponentsInChildren<Mole> ();
+		moles = moleContainer.GetComponentsInChildren<Mole>();
         infoText.text = "Grab the hammer and get ready!";
         isGameInProgress = false;
         countdownTimer = 10f;
         resetTimer = 5f;
         scoreFileName = "scores.txt";
+        highScore = null;
     }
 	
 	// Update is called once per frame
@@ -93,7 +94,7 @@ public class GameController : MonoBehaviour {
             {
                 // Compare player's score with high scores
                 highScores = sqlLite.GetAllHighScores();
-                if (!isNewHighScoreUIDisplayed && IsPlayerScoreNewHighScore(player.score, highScores))
+                if (!isNewHighScoreUIDisplayed && IsPlayerScoreNewHighScore(player.score, highScores) && !NewHighScoreDisplay.areInitialsEntered)
                     ShowNewHighScoreUI();
 
                 if (isNewHighScoreUIDisplayed)
@@ -101,6 +102,8 @@ public class GameController : MonoBehaviour {
                     if (!NewHighScoreDisplay.areInitialsEntered)
                         return;
 
+                    SaveScore(highScore);
+                    highScore = null;
                     // Save player's score to db
                     // Destroy UI and set isNewHighScoreUIDisplayed to false
                     // Need to add something to prevent ShowNewHighScoreUI from displaying again after saving score
@@ -137,13 +140,12 @@ public class GameController : MonoBehaviour {
             level++;
     }
 
-    private void SaveScore(int score, string initials, System.DateTime date)
+    private void SaveScore(HighScore highScore)
     {
-        //JSONClass highScore = new JSONClass();
-        //highScore.Add("score", new JSONData(score));
-        //highScore.Add("initials", new JSONData(initials));
-        //highScore.Add("date", new JSONData(date.ToString()));
-        //highScore.SaveToFile(scoreFileName);
+        highScores.Add(highScore);
+        highScores = highScores.OrderByDescending(score => score.Score).Take(10).ToList();
+        sqlLite.DeleteAllScores();
+        sqlLite.SaveScores(highScores);
     }
 
     private void LoadScores()
@@ -155,19 +157,24 @@ public class GameController : MonoBehaviour {
         areScoresDisplayed = true;
     }
 
-    private bool IsPlayerScoreNewHighScore(int score, List<HighScore> scores)
+    private bool IsPlayerScoreNewHighScore(int score, List<HighScore> highScores)
     {
-        return true;
+        if (highScores.Count < 10)
+            return true;
+
+        return score > highScores.Select(highScore => highScore.Score).Min();
     }
 
     private void ShowNewHighScoreUI()
     {
-        NewHighScoreDisplay newHighScoreDisplay = Instantiate(newHighScoreDisplayPrefab);
+        player.score = GetRandomScore();
+        highScore = new HighScore(player.score);
+        highScore.ShowNewHighScoreUI();
         isNewHighScoreUIDisplayed = true;
     }
 
     #region Testing
-    private List<HighScore> GetMockTestScores()
+    private List<HighScore> GetMockHighScores()
     {
         List<HighScore> highScores = new List<HighScore>();
         highScores.Add(new HighScore(1, 134, "MSN", DateTime.Now.AddDays(320)));
@@ -181,6 +188,11 @@ public class GameController : MonoBehaviour {
         highScores.Add(new HighScore(9, 225, "ABC", DateTime.Now));
         highScores.Add(new HighScore(10, 125, "BFF", DateTime.Now));
         return highScores;
+    }
+
+    private int GetRandomScore()
+    {
+        return UnityEngine.Random.Range(0, 500);
     }
     #endregion
 
