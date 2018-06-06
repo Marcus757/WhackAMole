@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 114567911907955560}
   - component: {fileID: 114982882214681980}
   m_Layer: 5
-  m_Name: DoneButton
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -542,8 +542,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a31c8c8ac8e3714c823f3571b7d551d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 0}
-  initials: {fileID: 0}
 --- !u!114 &114976654529956356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -576,7 +574,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Done
+  m_Text: Save
 --- !u!114 &114982882214681980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -617,7 +615,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114903905754242156}
-        m_MethodName: SetAreInitialsEntered
+        m_MethodName: SaveScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

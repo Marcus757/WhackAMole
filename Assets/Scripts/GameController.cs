@@ -19,8 +19,10 @@ public class GameController : MonoBehaviour {
 	public float minimumSpawnDuration = 0.5f;
 	public float gameTimer;
     public ScoreLeaderboard scoreLeaderboardPrefab;
-    public SQLite sqlLite;
+    public SQLite sqLitePrefab;
     public HighScore highScorePrefab;
+    public static SQLite sqLite;
+    public static bool areInitialsEntered = false;
 
     private Mole[] moles;
 	private float spawnTimer;
@@ -32,6 +34,7 @@ public class GameController : MonoBehaviour {
     private List<HighScore> highScores;
     private bool isNewHighScoreUIDisplayed = false;
     private HighScore highScore;
+    
 
     // Use this for initialization
     void Start () {
@@ -96,16 +99,16 @@ public class GameController : MonoBehaviour {
             //if (level == 3)
             {
                 // Compare player's score with high scores
-                highScores = sqlLite.GetAllHighScores();
-                if (!isNewHighScoreUIDisplayed && IsPlayerScoreNewHighScore(player.score, highScores) && !NewHighScoreDisplay.areInitialsEntered)
+                sqLite = Instantiate(sqLitePrefab);
+                highScores = sqLite.GetAllHighScores();
+                if (!isNewHighScoreUIDisplayed && !areScoresDisplayed && IsPlayerScoreNewHighScore(player.score, highScores))
                     ShowNewHighScoreUI();
 
                 if (isNewHighScoreUIDisplayed)
                 {
-                    if (!NewHighScoreDisplay.areInitialsEntered)
+                    if (!areInitialsEntered)
                         return;
 
-                    SaveScore(highScore);
                     highScore = null;
                     // Save player's score to db
                     // Destroy UI and set isNewHighScoreUIDisplayed to false
@@ -119,9 +122,11 @@ public class GameController : MonoBehaviour {
 
 
                 if (!areScoresDisplayed)
+                {
+                    isNewHighScoreUIDisplayed = false;
+                    areInitialsEntered = false;
                     LoadScores();
-
-                //SaveScore(Player.totalScore, "NWA", System.DateTime.Now.Date); 
+                }
             }
 
             if (player.IsEnterPressed())
@@ -143,17 +148,9 @@ public class GameController : MonoBehaviour {
             level++;
     }
 
-    private void SaveScore(HighScore highScore)
-    {
-        highScores.Add(highScore);
-        highScores = highScores.OrderByDescending(score => score.Score).Take(10).ToList();
-        sqlLite.DeleteAllScores();
-        sqlLite.SaveScores(highScores);
-    }
-
     private void LoadScores()
     {
-        List<HighScore> highScores = sqlLite.GetAllHighScores();
+        List<HighScore> highScores = sqLite.GetAllHighScores();
         //highScores = highScores.OrderByDescending(highScore => highScore.Score).Take(10).ToList();
         ScoreLeaderboard scoreLeaderboard = (ScoreLeaderboard)Instantiate(scoreLeaderboardPrefab);
         scoreLeaderboard.LoadScores(highScores);

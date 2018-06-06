@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.UI;
+using SQLiter;
+using System.Linq;
+using System;
 
 public class NewHighScoreDisplay : MonoBehaviour {
-    public static bool areInitialsEntered = false;
-    public Text score;
-    public Text initials;
+    private HighScore highScore;
+    private Text score;
+    private InputField initials;
 
     private void Awake()
     {
@@ -19,8 +22,18 @@ public class NewHighScoreDisplay : MonoBehaviour {
                 case "ScoreField":
                     score = textField;
                     break;
+                default:
+                    break;
+            }
+        }
+
+        InputField[] inputFields = GetComponentsInChildren<InputField>();
+        foreach (InputField inputField in inputFields)
+        {
+            switch (inputField.name)
+            {
                 case "InitialsField":
-                    initials = textField;
+                    initials = inputField;
                     break;
                 default:
                     break;
@@ -37,23 +50,36 @@ public class NewHighScoreDisplay : MonoBehaviour {
             GetComponent<Canvas>().worldCamera = player.GetComponentInChildren<Camera>();
     }
 
-    public void LoadScore(int _score)
+    public void LoadHighScore(HighScore _highScore)
     {
+        highScore = _highScore;
+
         if (score != null)
-            score.text = _score.ToString();
+            score.text = highScore.Score.ToString();
     }
 	
 	// Update is called once per frame
 
-    public void SetAreInitialsEntered()
+    public void SaveScore()
     {
-        if (!string.IsNullOrEmpty(GetComponentInChildren<InputField>().text))
-            areInitialsEntered = true;
+        if (!string.IsNullOrEmpty(initials.text))
+            GameController.areInitialsEntered = true;
+
+        highScore.Name = initials.text;
+        highScore.Date = DateTime.Now;
+
+        List<HighScore> highScores = GameController.sqLite.GetAllHighScores();
+        highScores.Add(highScore);
+        highScores = highScores.OrderByDescending(score => score.Score).Take(10).ToList();
+
+        foreach (HighScore _highScore in highScores)
+        {
+            int rank = highScores.FindIndex(hs => hs.Name == _highScore.Name && hs.Score == _highScore.Score && hs.Date == _highScore.Date);
+            _highScore.Rank = ++rank;
+        }
+        
+        GameController.sqLite.DeleteAllScores();
+        GameController.sqLite.SaveScores(highScores);
+        Destroy(gameObject);
     }
-
-    //public string GetInitials()
-    //{
-    //    return GetComponentInChildren<InputField>().text;
-    //}
-
 }

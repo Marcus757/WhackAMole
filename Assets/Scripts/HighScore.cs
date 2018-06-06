@@ -27,6 +27,6 @@ public class HighScore : MonoBehaviour {
     public void ShowNewHighScoreUI()
     {
         NewHighScoreDisplay newHighScoreDisplay = (NewHighScoreDisplay)Instantiate(newHighScoreDisplayPrefab);
-        newHighScoreDisplay.LoadScore(Score);
+        newHighScoreDisplay.LoadHighScore(this);
     }
 }
