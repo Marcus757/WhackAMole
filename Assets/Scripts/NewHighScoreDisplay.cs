@@ -47,7 +47,14 @@ public class NewHighScoreDisplay : MonoBehaviour {
         Player player = gameController.player;
 
         if (player is NonVRPlayer)
+        {
             GetComponent<Canvas>().worldCamera = player.GetComponentInChildren<Camera>();
+        }
+
+        if (player is VRPlayer)
+        {
+
+        }
     }
 
     public void LoadHighScore(HighScore _highScore)

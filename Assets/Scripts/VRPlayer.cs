@@ -1,8 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class VRPlayer : Player {
+    public void Start()
+    {
+        PointerInputModule pointerInputModule = EventSystem.current.GetComponent<PointerInputModule>();
+        if (pointerInputModule is OVRInputModule)
+            return;
+
+        if (pointerInputModule is StandaloneInputModule)
+            Destroy(pointerInputModule);
+
+        gameObject.AddComponent<OVRInputModule>();
+    }
     public override void ResetGame()
     {
         base.ResetGame();

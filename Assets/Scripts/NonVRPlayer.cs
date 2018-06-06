@@ -1,12 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NonVRPlayer : Player {
+    public void Start()
+    {
+        //PointerInputModule pointerInputModule = EventSystem.current.GetComponent<PointerInputModule>();
+        //if (pointerInputModule is StandaloneInputModule)
+        //    return;
+
+        //if (pointerInputModule is OVRInputModule)
+        //    Destroy(pointerInputModule);
+
+        //gameObject.AddComponent<StandaloneInputModule>();
+
+        PointerInputModule pointerInputModule = EventSystem.current.GetComponent<PointerInputModule>();
+        if (pointerInputModule is OVRInputModule)
+            return;
+
+        if (pointerInputModule is StandaloneInputModule)
+            Destroy(pointerInputModule);
+
+        EventSystem.current. .AddComponent<OVRInputModule>();
+    }
     public void Update()
     {
         //RaycastHit vHit = new RaycastHit();
-        Ray vRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Ray vRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         
     }
 
