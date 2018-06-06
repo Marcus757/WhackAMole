@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour {
     public HighScore highScorePrefab;
     public static SQLite sqLite;
     public static bool areInitialsEntered = false;
+    public bool DebugMode = false;
 
     private Mole[] moles;
 	private float spawnTimer;
@@ -34,18 +35,29 @@ public class GameController : MonoBehaviour {
     private List<HighScore> highScores;
     private bool isNewHighScoreUIDisplayed = false;
     private HighScore highScore;
-    
+    private int levelToShowUI = 3;
+    private bool isGameOverDisplayed = false;
+
+    public void Awake()
+    {
+        if (DebugMode)
+        {
+            player.score = GetRandomScore();
+            levelToShowUI = 3;
+            gameTimer = 10;
+        }
+    }
 
     // Use this for initialization
     void Start () {
 		moles = moleContainer.GetComponentsInChildren<Mole>();
         infoText.text = "Grab the hammer and get ready!";
         isGameInProgress = false;
+        isGameOverDisplayed = false;
         countdownTimer = 10f;
         resetTimer = 5f;
         scoreFileName = "scores.txt";
-        highScore = null;
-        player.score = GetRandomScore();
+        highScore = null;        
     }
 	
 	// Update is called once per frame
@@ -70,74 +82,80 @@ public class GameController : MonoBehaviour {
         gameTimer -= Time.deltaTime;
 
         if (gameTimer > 0f) {
-            infoText.text = "Time: " + Mathf.Floor(gameTimer) + "\nScore: " + player.score + "\nLevel: " + level;
-            spawnTimer -= Time.deltaTime;
-
-            if (spawnTimer <= 0f) {
-                moles[UnityEngine.Random.Range(0, moles.Length)].Rise();
-                spawnDuration -= spawnDecrement;
-
-                if (spawnDuration < minimumSpawnDuration) {
-                    spawnDuration = minimumSpawnDuration;
-                }
-
-                spawnTimer = spawnDuration;
-            }
-
+            PlayGame();
             return;
         }
 
-        if (gameTimer <= 0f)
+        // Game Over, gameTimer <= 0f
+        if (!isGameOverDisplayed)
         {
-            infoText.text = "Game over! \nYour score: " + Mathf.Floor(player.score);
-            resetTimer -= Time.deltaTime;
-
-            if (resetTimer > 0f)
-                return;
-
-            if (level == 1)
-            //if (level == 3)
-            {
-                // Compare player's score with high scores
-                sqLite = Instantiate(sqLitePrefab);
-                highScores = sqLite.GetAllHighScores();
-                if (!isNewHighScoreUIDisplayed && !areScoresDisplayed && IsPlayerScoreNewHighScore(player.score, highScores))
-                    ShowNewHighScoreUI();
-
-                if (isNewHighScoreUIDisplayed)
-                {
-                    if (!areInitialsEntered)
-                        return;
-
-                    highScore = null;
-                    // Save player's score to db
-                    // Destroy UI and set isNewHighScoreUIDisplayed to false
-                    // Need to add something to prevent ShowNewHighScoreUI from displaying again after saving score
-                }
-                        
-                // If player's score ranks in top ten, then present player with initials input ui.
-                // If player's score does not rank in top then display high scores
-                // Player enters initials and player's score gets saved to db.
-                // High scores are then retrieved from database and displayed on screen
-
-
-                if (!areScoresDisplayed)
-                {
-                    isNewHighScoreUIDisplayed = false;
-                    areInitialsEntered = false;
-                    LoadScores();
-                }
-            }
-
-            if (player.IsEnterPressed())
-                areScoresDisplayed = false;
-
-            if (areScoresDisplayed)
-                return;
-
-            ChangeLevel();
-            player.ResetGame();
+            Player.totalScore += player.score;
+            infoText.text = "Game over!";
+            infoText.text += "\nScore: " + Mathf.Floor(player.score);
+            infoText.text += "\nTotal Score: " + Mathf.Floor(Player.totalScore);
+            isGameOverDisplayed = true;    
         }
+
+        resetTimer -= Time.deltaTime;
+
+        if (resetTimer > 0f)
+            return;
+
+        if (level == levelToShowUI)
+        {
+            // Compare player's score with high scores
+            sqLite = Instantiate(sqLitePrefab);
+            highScores = sqLite.GetAllHighScores();
+            if (!isNewHighScoreUIDisplayed && !areScoresDisplayed && IsPlayerScoreNewHighScore(Player.totalScore, highScores))
+                ShowNewHighScoreUI();
+
+            if (isNewHighScoreUIDisplayed)
+            {
+                if (!areInitialsEntered)
+                    return;
+
+                //highScore = null;
+            }
+                
+            if (!areScoresDisplayed)
+            {
+                isNewHighScoreUIDisplayed = false;
+                areInitialsEntered = false;
+                LoadScores();
+            }
+        }
+
+        if (player.IsEnterPressed())
+            areScoresDisplayed = false;
+
+        if (areScoresDisplayed)
+            return;
+
+        ChangeLevel();
+        player.ResetGame();
+        
+    }
+
+    private void PlayGame()
+    {
+        infoText.text = "Time: " + Mathf.Floor(gameTimer) + "\nScore: " + player.score + "\nLevel: " + level;
+        spawnTimer -= Time.deltaTime;
+
+        if (spawnTimer <= 0f)
+        {
+            moles[UnityEngine.Random.Range(0, moles.Length)].Rise();
+            spawnDuration -= spawnDecrement;
+
+            if (spawnDuration < minimumSpawnDuration)
+                spawnDuration = minimumSpawnDuration;
+
+            spawnTimer = spawnDuration;
+        }
+    }
+
+    private void GameOver()
+    {
+
     }
 
     private void ChangeLevel()
@@ -168,7 +186,7 @@ public class GameController : MonoBehaviour {
     private void ShowNewHighScoreUI()
     {
         highScore = (HighScore)Instantiate(highScorePrefab);
-        highScore.LoadScore(player.score);
+        highScore.LoadScore(Player.totalScore);
         highScore.ShowNewHighScoreUI();
         isNewHighScoreUIDisplayed = true;
     }

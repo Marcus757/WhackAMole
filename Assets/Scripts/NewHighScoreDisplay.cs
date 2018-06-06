@@ -82,4 +82,9 @@ public class NewHighScoreDisplay : MonoBehaviour {
         GameController.sqLite.SaveScores(highScores);
         Destroy(gameObject);
     }
+
+    public void OnInitialsValueChanged()
+    {
+        initials.text = initials.text.ToUpper();
+    }
 }
