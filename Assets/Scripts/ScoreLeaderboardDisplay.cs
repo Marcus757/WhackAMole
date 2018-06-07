@@ -2,20 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreLeaderboardDisplay : MonoBehaviour {
+public class ScoreLeaderboardDisplay : UIDisplay {
     public Transform targetTransform;
     public HighScoreDisplay highScoreDisplayPrefab;
     private int rank = 1;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void LoadScores(List<HighScore> highScores)
     {

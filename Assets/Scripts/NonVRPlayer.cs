@@ -6,23 +6,14 @@ using UnityEngine.EventSystems;
 public class NonVRPlayer : Player {
     public void Start()
     {
-        //PointerInputModule pointerInputModule = EventSystem.current.GetComponent<PointerInputModule>();
-        //if (pointerInputModule is StandaloneInputModule)
-        //    return;
-
-        //if (pointerInputModule is OVRInputModule)
-        //    Destroy(pointerInputModule);
-
-        //gameObject.AddComponent<StandaloneInputModule>();
-
         PointerInputModule pointerInputModule = EventSystem.current.GetComponent<PointerInputModule>();
-        if (pointerInputModule is OVRInputModule)
+        if (pointerInputModule is StandaloneInputModule)
             return;
 
-        if (pointerInputModule is StandaloneInputModule)
+        if (pointerInputModule is OVRInputModule)
             Destroy(pointerInputModule);
 
-        EventSystem.current. .AddComponent<OVRInputModule>();
+        EventSystem.current.gameObject.AddComponent<StandaloneInputModule>();
     }
     public void Update()
     {

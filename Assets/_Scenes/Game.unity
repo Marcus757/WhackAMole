@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moleContainer: {fileID: 856348712}
-  player: {fileID: 871902773}
+  player: {fileID: 649467269}
   infoText: {fileID: 702818319}
   spawnDuration: 1.5
   spawnDecrement: 0.1
@@ -1291,12 +1291,12 @@ GameObject:
   - component: {fileID: 649467265}
   - component: {fileID: 649467269}
   m_Layer: 0
-  m_Name: Player
+  m_Name: VRPlayer
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &649467265
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1374,6 +1374,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   hammer: {fileID: 0}
+  ovrGazePointerPrefab: {fileID: 11440264, guid: a3d448884fe1e924f90df813328fb743,
+    type: 2}
 --- !u!1001 &686302197
 Prefab:
   m_ObjectHideFlags: 0
@@ -2074,7 +2076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &871902772
 Transform:
   m_ObjectHideFlags: 0
@@ -8334,6 +8336,25 @@ Transform:
   m_PrefabParentObject: {fileID: 4010653544724178, guid: 3798a8ca19094aa4aaa5660feed5dd8e,
     type: 2}
   m_PrefabInternal: {fileID: 2110165961}
+--- !u!1 &2134629216 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+  m_PrefabInternal: {fileID: 640204530}
+--- !u!114 &2134629217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2134629216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e7ff1cdf4c4e74db00c3684108bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  sortOrder: 20
 --- !u!1001 &2142548899
 Prefab:
   m_ObjectHideFlags: 0

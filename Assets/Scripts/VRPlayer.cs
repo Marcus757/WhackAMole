@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class VRPlayer : Player {
+    public OVRGazePointer ovrGazePointerPrefab;
+
     public void Start()
     {
         PointerInputModule pointerInputModule = EventSystem.current.GetComponent<PointerInputModule>();
@@ -13,8 +15,13 @@ public class VRPlayer : Player {
         if (pointerInputModule is StandaloneInputModule)
             Destroy(pointerInputModule);
 
-        gameObject.AddComponent<OVRInputModule>();
+        EventSystem.current.gameObject.AddComponent<OVRInputModule>();
+        EventSystem.current.GetComponent<OVRInputModule>().rayTransform = Camera.main.transform;
+
+        OVRGazePointer ovrGazePointer = (OVRGazePointer)Instantiate(ovrGazePointerPrefab);
+        ovrGazePointer.rayTransform = Camera.main.transform;
     }
+
     public override void ResetGame()
     {
         base.ResetGame();

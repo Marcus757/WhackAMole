@@ -7,7 +7,7 @@ using SQLiter;
 using System.Linq;
 using System;
 
-public class NewHighScoreDisplay : MonoBehaviour {
+public class NewHighScoreDisplay : UIDisplay {
     private HighScore highScore;
     private Text score;
     private InputField initials;
@@ -38,22 +38,6 @@ public class NewHighScoreDisplay : MonoBehaviour {
                 default:
                     break;
             }
-        }
-    }
-
-    // Use this for initialization
-    void Start () {
-        GameController gameController = GameObject.FindObjectOfType<GameController>();
-        Player player = gameController.player;
-
-        if (player is NonVRPlayer)
-        {
-            GetComponent<Canvas>().worldCamera = player.GetComponentInChildren<Camera>();
-        }
-
-        if (player is VRPlayer)
-        {
-
         }
     }
 
