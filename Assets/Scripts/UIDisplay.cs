@@ -9,7 +9,7 @@ public class UIDisplay : MonoBehaviour {
 	void Start () {
         gameObject.GetComponent<Canvas>().worldCamera = Camera.main;
         Destroy(gameObject.GetComponent<GraphicRaycaster>());
-        gameObject.AddComponent<OVRRaycaster>();
+        gameObject.AddComponent<OVRRaycaster>().sortOrder = 20;
     }
 	
 	// Update is called once per frame

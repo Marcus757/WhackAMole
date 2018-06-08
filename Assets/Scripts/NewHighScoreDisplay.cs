@@ -39,6 +39,8 @@ public class NewHighScoreDisplay : UIDisplay {
                     break;
             }
         }
+
+        
     }
 
     public void LoadHighScore(HighScore _highScore)

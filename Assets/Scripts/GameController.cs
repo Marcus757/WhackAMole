@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour {
         if (DebugMode)
         {
             player.score = GetRandomScore();
-            levelToShowUI = 3;
+            levelToShowUI = 1;
             gameTimer = 10;
         }
     }
@@ -57,7 +57,12 @@ public class GameController : MonoBehaviour {
         countdownTimer = 10f;
         resetTimer = 5f;
         scoreFileName = "scores.txt";
-        highScore = null;        
+        highScore = null;
+
+        if (sqLite == null)
+            sqLite = Instantiate(sqLitePrefab);
+
+        Instantiate(scoreLeaderboardPrefab);
     }
 	
 	// Update is called once per frame
@@ -104,7 +109,6 @@ public class GameController : MonoBehaviour {
         if (level == levelToShowUI)
         {
             // Compare player's score with high scores
-            sqLite = Instantiate(sqLitePrefab);
             highScores = sqLite.GetAllHighScores();
             if (!isNewHighScoreUIDisplayed && !areScoresDisplayed && IsPlayerScoreNewHighScore(Player.totalScore, highScores))
                 ShowNewHighScoreUI();
