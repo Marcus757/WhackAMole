@@ -17,6 +17,11 @@ public class VRPlayer : Player {
         EventSystem.current.GetComponent<OVRInputModule>().rayTransform = Camera.main.transform;
     }
 
+    public void Update()
+    {
+
+    }
+
     public override void ResetGame()
     {
         base.ResetGame();

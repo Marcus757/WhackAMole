@@ -8,9 +8,11 @@ using System.Linq;
 using System;
 
 public class NewHighScoreDisplay : UIDisplay {
+    public VRKeyboard vrKeyboardPrefab;
     private HighScore highScore;
     private Text score;
     private InputField initials;
+    private VRKeyboard vrKeyboard;
 
     private void Awake()
     {
@@ -40,7 +42,7 @@ public class NewHighScoreDisplay : UIDisplay {
             }
         }
 
-        
+        vrKeyboard = Instantiate(vrKeyboardPrefab);
     }
 
     public void LoadHighScore(HighScore _highScore)
@@ -73,6 +75,7 @@ public class NewHighScoreDisplay : UIDisplay {
         
         GameController.sqLite.DeleteAllScores();
         GameController.sqLite.SaveScores(highScores);
+        Destroy(vrKeyboard);
         Destroy(gameObject);
     }
 

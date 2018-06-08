@@ -61,8 +61,6 @@ public class GameController : MonoBehaviour {
 
         if (sqLite == null)
             sqLite = Instantiate(sqLitePrefab);
-
-        Instantiate(scoreLeaderboardPrefab);
     }
 	
 	// Update is called once per frame
@@ -76,6 +74,8 @@ public class GameController : MonoBehaviour {
 
         if (!isGameInProgress)
             return;
+
+        HideGazePointer();
 
         if (countdownTimer > 0)
         {
@@ -193,6 +193,16 @@ public class GameController : MonoBehaviour {
         highScore.LoadScore(Player.totalScore);
         highScore.ShowNewHighScoreUI();
         isNewHighScoreUIDisplayed = true;
+    }
+
+    private void HideGazePointer()
+    {
+        OVRGazePointer ovrGazePointer = GameObject.FindObjectOfType<OVRGazePointer>();
+        
+        if (player.IsHammerGrabbed())
+            OVRGazePointer.instance.RequestHide();
+        else
+            OVRGazePointer.instance.RequestShow();
     }
 
     #region Testing
