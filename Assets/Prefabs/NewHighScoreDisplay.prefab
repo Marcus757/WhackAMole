@@ -553,6 +553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a31c8c8ac8e3714c823f3571b7d551d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreFieldName: ScoreField
+  initialsFieldName: InitialsField
+  vrKeyboardPrefab: {fileID: 114040655036803782, guid: 4df9583c6421ee9478a5121f6800c089,
+    type: 2}
 --- !u!114 &114976654529956356
 MonoBehaviour:
   m_ObjectHideFlags: 1

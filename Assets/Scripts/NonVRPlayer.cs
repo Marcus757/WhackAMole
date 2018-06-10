@@ -14,14 +14,9 @@ public class NonVRPlayer : Player {
             Destroy(pointerInputModule);
 
         EventSystem.current.gameObject.AddComponent<StandaloneInputModule>();
+        OVRInput.RecenterController();
     }
     
-    //public override void ResetGame()
-    //{
-    //    OVRInput.RecenterController();
-    //    base.ResetGame();
-    //}
-
     public override bool IsResetGamePressed()
     {
         return Input.GetKeyDown(KeyCode.R) ? true : false;
@@ -29,11 +24,16 @@ public class NonVRPlayer : Player {
 
     public override bool IsEnterPressed()
     {
-        return Input.GetMouseButtonDown(0) ? true : false;
+        return Input.GetKeyDown(KeyCode.Return) ? true : false;
     }
 
     public override bool IsItemGrabbed(GameObject item)
     {
         return Input.GetMouseButtonDown(1) ? true : false;
+    }
+
+    public bool IsPrimaryMouseButtonPressed()
+    {
+        return Input.GetMouseButtonDown(0) ? true : false;
     }
 }

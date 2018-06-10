@@ -59,7 +59,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1711954193810532}
-  buttonPrototype: {fileID: 0}
+  buttonPrototype: {fileID: 1008500717761024, guid: bc5373ad1d1eed44984e3eec9328cc3f,
+    type: 2}
   displayText: {fileID: 114896918907105962}
   origin: {x: 0, y: 0}
   spacing: {x: 0, y: 0}

@@ -12,11 +12,6 @@ public class ScoreLeaderboard : MonoBehaviour {
         scoreLeaderboardDisplay.LoadScores(highScores);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    
     public void LoadScores(List<HighScore> _highScores)
     {
         highScores = _highScores;

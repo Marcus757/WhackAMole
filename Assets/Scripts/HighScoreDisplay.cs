@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HighScoreDisplay : MonoBehaviour {
+    public string rankFieldName = "Rank";
+    public string scoreFieldName = "Score";
+    public string nameFieldName = "Name";
+    public string dateFieldName = "Date";
     public Text rank;
     public Text score;
     public Text name;
@@ -11,29 +16,12 @@ public class HighScoreDisplay : MonoBehaviour {
     private HighScore highScore;
 
 
-    private void Awake()
+    void Start()
     {
-        Text[] textFields = GetComponentsInChildren<Text>();
-        foreach (Text textField in textFields)
-        {
-            switch (textField.name)
-            {
-                case "Rank":
-                    rank = textField;
-                    break;
-                case "Score":
-                    score = textField;
-                    break;
-                case "Name":
-                    name = textField;
-                    break;
-                case "Date":
-                    date = textField;
-                    break;
-                default:
-                    break;
-            }
-        }
+        rank = GetComponentsInChildren<Text>().Where(textField => textField.name == rankFieldName).FirstOrDefault();
+        score = GetComponentsInChildren<Text>().Where(textField => textField.name == scoreFieldName).FirstOrDefault();
+        name = GetComponentsInChildren<Text>().Where(textField => textField.name == nameFieldName).FirstOrDefault();
+        date = GetComponentsInChildren<Text>().Where(textField => textField.name == dateFieldName).FirstOrDefault();
     }
 
     public void LoadHighScore(HighScore _highScore, int rankCount)

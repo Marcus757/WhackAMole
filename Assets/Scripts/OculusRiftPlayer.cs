@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class VRPlayer : Player {
+public class OculusRiftPlayer : Player {
     public void Start()
     {
         PointerInputModule pointerInputModule = EventSystem.current.GetComponent<PointerInputModule>();
@@ -14,11 +14,6 @@ public class VRPlayer : Player {
         EventSystem.current.gameObject.AddComponent<OVRInputModule>();
         EventSystem.current.GetComponent<OVRInputModule>().rayTransform = Camera.main.transform;
     }
-    
-    //public override void ResetGame()
-    //{
-    //    base.ResetGame();
-    //}
 
     public override bool IsResetGamePressed()
     {

@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using UnityEngine.UI;
-using SimpleJSON;
 using System.Collections.Generic;
 using System;
 using System.Linq;
-using SQLiter;
 
 public class GameController : MonoBehaviour {
 
@@ -20,49 +17,39 @@ public class GameController : MonoBehaviour {
 	public float minimumSpawnDuration = 0.5f;
 	public float gameTimer;
     public ScoreLeaderboard scoreLeaderboardPrefab;
-    public SQLite sqLitePrefab;
     public HighScore highScorePrefab;
-    public static SQLite sqLite;
-    public static bool areInitialsEntered = false;
     public bool DebugMode = false;
 
     private Mole[] moles;
     private GameObject hammer;
+    private Repository repository;
     private int totalScore;
 	private float spawnTimer;
 	private float resetTimer;
     private float countdownTimer;
     private bool isGameInProgress;
     private string scoreFileName;
-    private bool areScoresDisplayed = false;
     private List<HighScore> highScores;
-    private bool isNewHighScoreUIDisplayed = false;
     private HighScore highScore;
-    private int levelToShowUI = 3;
+    private int displayUIOnLevel = 3;
     private bool isGameOverDisplayed = false;
-
-    public void Awake()
-    {
-        if (DebugMode)
-        {
-            player.score = GetRandomScore();
-            levelToShowUI = 1;
-            gameTimer = 10;
-        }
-    }
-
+    
     // Use this for initialization
     void Start () {
-		moles = moleContainer.GetComponentsInChildren<Mole>();
+        if (DebugMode)
+        {
+            displayUIOnLevel = 1;
+            gameTimer = 10;
+        }
+
+        moles = moleContainer.GetComponentsInChildren<Mole>();
         infoText.text = "Grab the hammer and get ready!";
         isGameInProgress = false;
         isGameOverDisplayed = false;
         countdownTimer = 10f;
         resetTimer = 5f;
         highScore = null;
-
-        if (sqLite == null)
-            sqLite = Instantiate(sqLitePrefab);
+        repository = new Repository();
     }
 	
 	// Update is called once per frame
@@ -75,6 +62,14 @@ public class GameController : MonoBehaviour {
 
         if (!isGameInProgress)
             return;
+
+        if (DebugMode && player is NonVRPlayer)
+        {
+            var nonVRPlayer = (NonVRPlayer)player;
+
+            if (nonVRPlayer.IsPrimaryMouseButtonPressed())
+                player.score++;
+        }
 
         HideGazePointer();
 
@@ -107,33 +102,24 @@ public class GameController : MonoBehaviour {
         if (resetTimer > 0f)
             return;
 
-        if (level == levelToShowUI)
+        if (level == displayUIOnLevel)
         {
             // Compare player's score with high scores
-            highScores = sqLite.GetAllHighScores();
-            if (!isNewHighScoreUIDisplayed && !areScoresDisplayed && IsPlayerScoreNewHighScore(totalScore, highScores))
+            highScores = repository.GetAllHighScores();
+            if (!IsNewHighScoreUIDisplayed() && !IsScoreLeaderboardUIDisplayed() && IsPlayerScoreNewHighScore(totalScore, highScores))
                 ShowNewHighScoreUI();
 
-            if (isNewHighScoreUIDisplayed)
-            {
-                if (!areInitialsEntered)
-                    return;
-
-                //highScore = null;
-            }
+            if (IsNewHighScoreUIDisplayed())
+                return;
                 
-            if (!areScoresDisplayed)
-            {
-                isNewHighScoreUIDisplayed = false;
-                areInitialsEntered = false;
-                LoadScores();
-            }
+            if (!IsScoreLeaderboardUIDisplayed())
+                ShowScoreLeaderboardUI();
         }
 
         if (player.IsEnterPressed())
-            areScoresDisplayed = false;
+            HideScoreLeaderboardDisplay();
 
-        if (areScoresDisplayed)
+        if (IsScoreLeaderboardUIDisplayed())
             return;
 
         ChangeLevel();
@@ -156,12 +142,7 @@ public class GameController : MonoBehaviour {
             spawnTimer = spawnDuration;
         }
     }
-
-    private void GameOver()
-    {
-
-    }
-
+    
     private void ChangeLevel()
     {
         if (level == 3)
@@ -170,13 +151,35 @@ public class GameController : MonoBehaviour {
             level++;
     }
 
-    private void LoadScores()
+    private void ShowNewHighScoreUI()
     {
-        List<HighScore> highScores = sqLite.GetAllHighScores();
-        //highScores = highScores.OrderByDescending(highScore => highScore.Score).Take(10).ToList();
+        highScore = (HighScore)Instantiate(highScorePrefab);
+        highScore.LoadScore(totalScore);
+        highScore.ShowNewHighScoreUI();
+    }
+
+    private bool IsNewHighScoreUIDisplayed()
+    {
+        return GameObject.FindObjectOfType<NewHighScoreDisplay>() == null ? false : true;
+    }
+
+    private void ShowScoreLeaderboardUI()
+    {
+        List<HighScore> highScores = repository.GetAllHighScores();
         ScoreLeaderboard scoreLeaderboard = (ScoreLeaderboard)Instantiate(scoreLeaderboardPrefab);
         scoreLeaderboard.LoadScores(highScores);
-        areScoresDisplayed = true;
+    }
+
+    private bool IsScoreLeaderboardUIDisplayed()
+    {
+        return GameObject.FindObjectOfType<ScoreLeaderboardDisplay>() == null ? false : true;
+    }
+
+    private void HideScoreLeaderboardDisplay()
+    {
+        var scoreLeaderboard = GameObject.FindObjectOfType<ScoreLeaderboardDisplay>();
+        if (scoreLeaderboard != null)
+            Destroy(scoreLeaderboard);
     }
 
     private bool IsPlayerScoreNewHighScore(int score, List<HighScore> highScores)
@@ -185,14 +188,6 @@ public class GameController : MonoBehaviour {
             return true;
 
         return score > highScores.Select(highScore => highScore.Score).Min();
-    }
-
-    private void ShowNewHighScoreUI()
-    {
-        highScore = (HighScore)Instantiate(highScorePrefab);
-        highScore.LoadScore(totalScore);
-        highScore.ShowNewHighScoreUI();
-        isNewHighScoreUIDisplayed = true;
     }
 
     private void HideGazePointer()
@@ -205,7 +200,7 @@ public class GameController : MonoBehaviour {
             OVRGazePointer.instance.RequestShow();
     }
 
-    public void ResetGame()
+    private void ResetGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
