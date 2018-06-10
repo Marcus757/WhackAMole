@@ -45,6 +45,12 @@ public class NewHighScoreDisplay : UIDisplay {
         vrKeyboard = Instantiate(vrKeyboardPrefab);
     }
 
+    public override void Start()
+    {
+        base.Start();
+        gameObject.AddComponent<OVRRaycaster>().sortOrder = 20;
+    }
+
     public void LoadHighScore(HighScore _highScore)
     {
         highScore = _highScore;

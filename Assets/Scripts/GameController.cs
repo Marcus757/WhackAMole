@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
 
 	public GameObject moleContainer;
 	public Player player;
+    public Hammer hammerPrefab;
 	public Text infoText;
     public static int level = 1;
 	public float spawnDuration;
@@ -26,6 +27,8 @@ public class GameController : MonoBehaviour {
     public bool DebugMode = false;
 
     private Mole[] moles;
+    private GameObject hammer;
+    private int totalScore;
 	private float spawnTimer;
 	private float resetTimer;
     private float countdownTimer;
@@ -56,7 +59,6 @@ public class GameController : MonoBehaviour {
         isGameOverDisplayed = false;
         countdownTimer = 10f;
         resetTimer = 5f;
-        scoreFileName = "scores.txt";
         highScore = null;
 
         if (sqLite == null)
@@ -65,11 +67,10 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         if (player.IsResetGamePressed())
-            player.ResetGame();
+            ResetGame();
 
-        if (!isGameInProgress && player.IsHammerGrabbed())
+        if (!isGameInProgress && player.IsItemGrabbed(hammer))
             isGameInProgress = true;
 
         if (!isGameInProgress)
@@ -94,10 +95,10 @@ public class GameController : MonoBehaviour {
         // Game Over, gameTimer <= 0f
         if (!isGameOverDisplayed)
         {
-            Player.totalScore += player.score;
-            infoText.text = "Game over!";
+            totalScore += player.score;
+            infoText.text = "Game over!";   
             infoText.text += "\nScore: " + Mathf.Floor(player.score);
-            infoText.text += "\nTotal Score: " + Mathf.Floor(Player.totalScore);
+            infoText.text += "\nTotal Score: " + Mathf.Floor(totalScore);
             isGameOverDisplayed = true;    
         }
 
@@ -110,7 +111,7 @@ public class GameController : MonoBehaviour {
         {
             // Compare player's score with high scores
             highScores = sqLite.GetAllHighScores();
-            if (!isNewHighScoreUIDisplayed && !areScoresDisplayed && IsPlayerScoreNewHighScore(Player.totalScore, highScores))
+            if (!isNewHighScoreUIDisplayed && !areScoresDisplayed && IsPlayerScoreNewHighScore(totalScore, highScores))
                 ShowNewHighScoreUI();
 
             if (isNewHighScoreUIDisplayed)
@@ -136,8 +137,7 @@ public class GameController : MonoBehaviour {
             return;
 
         ChangeLevel();
-        player.ResetGame();
-        
+        ResetGame();
     }
 
     private void PlayGame()
@@ -190,7 +190,7 @@ public class GameController : MonoBehaviour {
     private void ShowNewHighScoreUI()
     {
         highScore = (HighScore)Instantiate(highScorePrefab);
-        highScore.LoadScore(Player.totalScore);
+        highScore.LoadScore(totalScore);
         highScore.ShowNewHighScoreUI();
         isNewHighScoreUIDisplayed = true;
     }
@@ -199,10 +199,15 @@ public class GameController : MonoBehaviour {
     {
         OVRGazePointer ovrGazePointer = GameObject.FindObjectOfType<OVRGazePointer>();
         
-        if (player.IsHammerGrabbed())
+        if (player.IsItemGrabbed(hammer))
             OVRGazePointer.instance.RequestHide();
         else
             OVRGazePointer.instance.RequestShow();
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     #region Testing

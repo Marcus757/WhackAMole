@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class VRPlayer : Player {
@@ -16,41 +14,30 @@ public class VRPlayer : Player {
         EventSystem.current.gameObject.AddComponent<OVRInputModule>();
         EventSystem.current.GetComponent<OVRInputModule>().rayTransform = Camera.main.transform;
     }
-
-    public void Update()
-    {
-
-    }
-
-    public override void ResetGame()
-    {
-        base.ResetGame();
-    }
+    
+    //public override void ResetGame()
+    //{
+    //    base.ResetGame();
+    //}
 
     public override bool IsResetGamePressed()
     {
-        if (OVRInput.GetDown(OVRInput.RawButton.Start))
-            return true;
-
-        return false;
+        return OVRInput.GetDown(OVRInput.RawButton.Start) ? true : false;
+    }
+    
+    public override bool IsEnterPressed()
+    {
+        return OVRInput.GetDown(OVRInput.RawButton.A) ? true : false;
     }
 
-    public override bool IsHammerGrabbed()
+    public override bool IsItemGrabbed(GameObject item)
     {
         OVRGrabber[] grabbers = GameObject.FindObjectsOfType<OVRGrabber>();
         foreach (var grabber in grabbers)
         {
-            if (grabber.grabbedObject != null && grabber.grabbedObject.GetComponent<Hammer>() != null)
+            if (grabber.grabbedObject != null && grabber.grabbedObject.GetType() == item.GetType())
                 return true;
         }
-
-        return false;
-    }
-
-    public override bool IsEnterPressed()
-    {
-        if (OVRInput.GetDown(OVRInput.RawButton.A))
-            return true;
 
         return false;
     }

@@ -15,40 +15,25 @@ public class NonVRPlayer : Player {
 
         EventSystem.current.gameObject.AddComponent<StandaloneInputModule>();
     }
-    public void Update()
-    {
-        //RaycastHit vHit = new RaycastHit();
-        //Ray vRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-    }
-
-    public override void ResetGame()
-    {
-        OVRInput.RecenterController();
-        base.ResetGame();
-    }
+    
+    //public override void ResetGame()
+    //{
+    //    OVRInput.RecenterController();
+    //    base.ResetGame();
+    //}
 
     public override bool IsResetGamePressed()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            return true;
-
-        return false;
-    }
-
-    public override bool IsHammerGrabbed()
-    {
-        if (Input.GetMouseButtonDown(1))
-            return true;
-
-        return false;
+        return Input.GetKeyDown(KeyCode.R) ? true : false;
     }
 
     public override bool IsEnterPressed()
     {
-        if (Input.GetMouseButtonDown(0))
-            return true;
+        return Input.GetMouseButtonDown(0) ? true : false;
+    }
 
-        return false;
+    public override bool IsItemGrabbed(GameObject item)
+    {
+        return Input.GetMouseButtonDown(1) ? true : false;
     }
 }
