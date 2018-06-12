@@ -13,9 +13,9 @@ public class NewHighScoreDisplay : UIDisplay {
     private VRKeyboard vrKeyboard;
     private Repository repository;
 
-    public override void Start()
+    void Awake()
     {
-        base.Start();
+        ConvertToVR();
         gameObject.AddComponent<OVRRaycaster>().sortOrder = 20;
 
         score = GetComponentsInChildren<Text>().Where(textField => textField.name == scoreFieldName).FirstOrDefault();

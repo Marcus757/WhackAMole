@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class UIDisplay : MonoBehaviour {
-
-	// Use this for initialization
-	public virtual void Start () {
+	public void ConvertToVR () {
         gameObject.GetComponent<Canvas>().worldCamera = Camera.main;
         Destroy(gameObject.GetComponent<GraphicRaycaster>());
     }
