@@ -155,7 +155,8 @@ public class GameController : MonoBehaviour {
     {
         highScore = (HighScore)Instantiate(highScorePrefab);
         highScore.LoadScore(totalScore);
-        highScore.ShowNewHighScoreUI();
+        //highScore.ShowNewHighScoreUI();
+        NewHighScoreUI.Create(highScore);
     }
 
     private bool IsNewHighScoreUIDisplayed()

@@ -8,7 +8,7 @@ public class HighScore : MonoBehaviour {
     public int Score { get; set; }
     public string Name { get; set; }
     public DateTime Date { get; set; }
-    public NewHighScoreUI newHighScoreDisplayPrefab;
+    //public NewHighScoreUI newHighScoreDisplayPrefab;
 
         
     public HighScore(int rank, int score, string name, DateTime date)
@@ -24,9 +24,9 @@ public class HighScore : MonoBehaviour {
         this.Score = score;
     }
 
-    public void ShowNewHighScoreUI()
-    {
-        NewHighScoreUI newHighScoreDisplay = (NewHighScoreUI)Instantiate(newHighScoreDisplayPrefab);
-        newHighScoreDisplay.LoadHighScore(this);
-    }
+    //public void ShowNewHighScoreUI()
+    //{
+    //    NewHighScoreUI newHighScoreDisplay = (NewHighScoreUI)Instantiate(newHighScoreDisplayPrefab);
+    //    newHighScoreDisplay.LoadHighScore(this);
+    //}
 }

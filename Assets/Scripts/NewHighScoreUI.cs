@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 
 public class NewHighScoreUI : WorldSpaceUI {
+    public static UnityEngine.Object prefab;
     public string scoreFieldName = "ScoreField";
     public string initialsFieldName = "InitialsField";
     public VRKeyboard vrKeyboardPrefab;
@@ -13,7 +14,7 @@ public class NewHighScoreUI : WorldSpaceUI {
     private VRKeyboard vrKeyboard;
     private Repository repository;
 
-    void Awake()
+    void Start()
     {
         ConvertToVR();
         gameObject.AddComponent<OVRRaycaster>().sortOrder = 20;
@@ -26,8 +27,17 @@ public class NewHighScoreUI : WorldSpaceUI {
 
         repository = new Repository();
     }
+    
+    public static NewHighScoreUI Create(HighScore _highScore)
+    {
+        prefab = Resources.Load("Prefabs/NewHighScoreUI");
+        GameObject newObject = Instantiate(prefab) as GameObject;
+        NewHighScoreUI newHighScoreUI = newObject.GetComponent<NewHighScoreUI>();
+        newHighScoreUI.LoadHighScore(_highScore);
+        return newHighScoreUI;
+    }
 
-    public void LoadHighScore(HighScore _highScore)
+    private void LoadHighScore(HighScore _highScore)
     {
         highScore = _highScore;
 
