@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HighScoreDisplay : MonoBehaviour {
+public class HighScoreUI : MonoBehaviour {
     public string rankFieldName = "Rank";
     public string scoreFieldName = "Score";
     public string nameFieldName = "Name";

@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ScoreLeaderboard : MonoBehaviour {
     public List<HighScore> highScores = new List<HighScore>();
-    public ScoreLeaderboardDisplay scoreLeaderboardDisplayPrefab;
+    public ScoreLeaderboardUI scoreLeaderboardDisplayPrefab;
     
 	// Use this for initialization
 	void Start () {
-        ScoreLeaderboardDisplay scoreLeaderboardDisplay = (ScoreLeaderboardDisplay)Instantiate(scoreLeaderboardDisplayPrefab);
-        scoreLeaderboardDisplay.LoadScores(highScores);
+        ScoreLeaderboardUI scoreLeaderboardUI = (ScoreLeaderboardUI)Instantiate(scoreLeaderboardDisplayPrefab);
+        scoreLeaderboardUI.LoadScores(highScores);
 	}
 	
     public void LoadScores(List<HighScore> _highScores)

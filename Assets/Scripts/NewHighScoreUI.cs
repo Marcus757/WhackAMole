@@ -3,7 +3,7 @@ using System.Linq;
 using System;
 using UnityEngine;
 
-public class NewHighScoreDisplay : UIDisplay {
+public class NewHighScoreUI : WorldSpaceUI {
     public string scoreFieldName = "ScoreField";
     public string initialsFieldName = "InitialsField";
     public VRKeyboard vrKeyboardPrefab;

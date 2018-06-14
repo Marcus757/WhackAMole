@@ -160,7 +160,7 @@ public class GameController : MonoBehaviour {
 
     private bool IsNewHighScoreUIDisplayed()
     {
-        return GameObject.FindObjectOfType<NewHighScoreDisplay>() == null ? false : true;
+        return GameObject.FindObjectOfType<NewHighScoreUI>() == null ? false : true;
     }
 
     private void ShowScoreLeaderboardUI()
@@ -172,12 +172,12 @@ public class GameController : MonoBehaviour {
 
     private bool IsScoreLeaderboardUIDisplayed()
     {
-        return GameObject.FindObjectOfType<ScoreLeaderboardDisplay>() == null ? false : true;
+        return GameObject.FindObjectOfType<ScoreLeaderboardUI>() == null ? false : true;
     }
 
     private void HideScoreLeaderboardDisplay()
     {
-        var scoreLeaderboard = GameObject.FindObjectOfType<ScoreLeaderboardDisplay>();
+        var scoreLeaderboard = GameObject.FindObjectOfType<ScoreLeaderboardUI>();
         if (scoreLeaderboard != null)
             Destroy(scoreLeaderboard);
     }
