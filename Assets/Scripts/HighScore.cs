@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighScore : MonoBehaviour {
+[Serializable]
+public class HighScore {
+
+    [SerializeField]
     public int Rank { get; set; }
     public int Score { get; set; }
     public string Name { get; set; }
     public DateTime Date { get; set; }
-    //public NewHighScoreUI newHighScoreDisplayPrefab;
-
         
     public HighScore(int rank, int score, string name, DateTime date)
     {
@@ -19,14 +20,10 @@ public class HighScore : MonoBehaviour {
         this.Date = date;
     }
 
-    public void LoadScore(int score)
+    public HighScore(int score, string name, DateTime date)
     {
         this.Score = score;
+        this.Name = name;
+        this.Date = date;
     }
-
-    //public void ShowNewHighScoreUI()
-    //{
-    //    NewHighScoreUI newHighScoreDisplay = (NewHighScoreUI)Instantiate(newHighScoreDisplayPrefab);
-    //    newHighScoreDisplay.LoadHighScore(this);
-    //}
 }

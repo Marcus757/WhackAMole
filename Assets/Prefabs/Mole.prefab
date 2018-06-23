@@ -57,6 +57,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 70a0920ee77d1294aa3c28011a793542, type: 3}
   - {fileID: 2100002, guid: 70a0920ee77d1294aa3c28011a793542, type: 3}
@@ -117,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af6c48cba84a6d74aa84e382dd550767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScore: {fileID: 11400000, guid: 409ad371208aeeb498b147e2bfb217c7, type: 2}
   visibleHeight: -0.2
   hiddenHeight: -0.7
   speed: 4

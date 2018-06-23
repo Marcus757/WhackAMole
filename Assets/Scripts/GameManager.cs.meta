@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 38f30fdad18006a43a1a16e47e90c039
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - moleContainer: {instanceID: 0}
+  - player: {instanceID: 0}
+  - hammerPrefab: {instanceID: 0}
+  - infoText: {instanceID: 0}
+  - scoreLeaderboard: {fileID: 11400000, guid: d99ddf35c59a84e4cb5dfaad40842dbe, type: 2}
+  - highScorePrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

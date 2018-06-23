@@ -557,6 +557,7 @@ MonoBehaviour:
   initialsFieldName: InitialsField
   vrKeyboardPrefab: {fileID: 114040655036803782, guid: 4df9583c6421ee9478a5121f6800c089,
     type: 2}
+  playerScore: {fileID: 11400000, guid: 409ad371208aeeb498b147e2bfb217c7, type: 2}
 --- !u!114 &114976654529956356
 MonoBehaviour:
   m_ObjectHideFlags: 1

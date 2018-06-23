@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreLeaderboardUI : WorldSpaceUI {
+public class ScoreLeaderboardUI : WorldSpaceUI
+{
     public Transform targetTransform;
     public HighScoreUI highScoreDisplayPrefab;
+    public HighScoresData highScoresData;
     private int rank = 1;
 
-    public void LoadScores(List<HighScore> highScores)
+    public void ShowUI()
     {
-        foreach (HighScore highScore in highScores)
+        foreach (HighScore highScore in highScoresData.highScores)
         {
             HighScoreUI highScoreDisplay = (HighScoreUI)Instantiate(highScoreDisplayPrefab);
             highScoreDisplay.transform.SetParent(targetTransform, false);

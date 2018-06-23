@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mole : MonoBehaviour {
+    public PlayerScore playerScore;
     public float visibleHeight = 0.2f;
     public float hiddenHeight = -0.3f;
     public float speed = 4f;
@@ -93,12 +94,12 @@ public class Mole : MonoBehaviour {
             return;
 
         mole.OnHit();
-        GameObject.FindObjectOfType<Player>().score++;
+        playerScore.levelScore++;
     }
 
     private void ChangeDisappearDuration()
     {
-        switch (GameController.level)
+        switch (GameManager.level)
         {
             case 1:
                 goto default;

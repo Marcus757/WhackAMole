@@ -1,0 +1,53 @@
+﻿using UnityEngine.UI;
+using System.Linq;
+using System;
+using UnityEngine;
+
+public class NewHighScoreUI : WorldSpaceUI
+{
+    public string scoreFieldName = "ScoreField";
+    public string initialsFieldName = "InitialsField";
+    public VRKeyboard vrKeyboardPrefab;
+    public PlayerScore playerScore;
+
+    private HighScore highScore;
+    private Text score;
+    private InputField initials;
+    private VRKeyboard vrKeyboard;
+    private Repository repository;
+
+    void Start()
+    {
+        if (GameObject.FindObjectOfType<Player>() is OculusRiftPlayer)
+        {
+            ConvertToVR();
+            gameObject.AddComponent<OVRRaycaster>().sortOrder = 20;
+            vrKeyboard = Instantiate(vrKeyboardPrefab);
+        }
+
+        score = GetComponentsInChildren<Text>().Where(textField => textField.name == scoreFieldName).FirstOrDefault();
+        initials = GetComponentsInChildren<InputField>().Where(inputField => inputField.name == initialsFieldName).FirstOrDefault();
+        repository = new Repository();
+        LoadHighScore(playerScore.totalScore);
+    }
+
+    private void LoadHighScore(int highScore)
+    {
+        if (score != null)
+            score.text = highScore.ToString();
+    }
+
+    public void SaveScore()
+    {
+        HighScore highScore = new HighScore(playerScore.totalScore, initials.text, DateTime.Today);
+        repository.SaveScore(highScore);
+
+        Destroy(vrKeyboard);
+        Destroy(gameObject);
+    }
+
+    public void OnInitialsValueChanged()
+    {
+        initials.text = initials.text.ToUpper();
+    }
+}

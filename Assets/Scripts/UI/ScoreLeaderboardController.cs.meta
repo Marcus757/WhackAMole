@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: f790450c49973de4b99536bad0b41c1a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - scoreLeaderboardUIPrefab: {fileID: 114760866121964538, guid: bd584c09c2b9f884894f250551ccf25c,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

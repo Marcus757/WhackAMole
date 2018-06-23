@@ -24,7 +24,7 @@ public class NonVRPlayer : Player {
 
     public override bool IsEnterPressed()
     {
-        return Input.GetKeyDown(KeyCode.Return) ? true : false;
+        return IsPrimaryMouseButtonPressed();
     }
 
     public override bool IsItemGrabbed(GameObject item)

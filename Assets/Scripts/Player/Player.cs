@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public abstract class Player : MonoBehaviour {
-    public int score;
+    public PlayerScore playerScore;
     
     public abstract bool IsItemGrabbed(GameObject item);
     public abstract bool IsEnterPressed();

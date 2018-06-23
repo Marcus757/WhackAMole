@@ -14,9 +14,8 @@ public class HighScoreUI : MonoBehaviour {
     public Text name;
     public Text date;
     private HighScore highScore;
-
-
-    void Start()
+    
+    void Awake()
     {
         rank = GetComponentsInChildren<Text>().Where(textField => textField.name == rankFieldName).FirstOrDefault();
         score = GetComponentsInChildren<Text>().Where(textField => textField.name == scoreFieldName).FirstOrDefault();

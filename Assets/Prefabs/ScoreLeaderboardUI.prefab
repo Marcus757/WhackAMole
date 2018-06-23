@@ -545,6 +545,7 @@ MonoBehaviour:
   targetTransform: {fileID: 224682804063969778}
   highScoreDisplayPrefab: {fileID: 114537787744976934, guid: 1088c0ab59b8d894f9bc67bb2303513c,
     type: 2}
+  highScoresData: {fileID: 11400000, guid: 1cb47d3dd0f450b40a76c1b5c3c9ca8f, type: 2}
 --- !u!114 &114970174132386960
 MonoBehaviour:
   m_ObjectHideFlags: 1

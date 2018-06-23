@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 7b727e99d4b8199438b51fa0171e42da
-timeCreated: 1523994473
-licenseType: Free
+guid: 6b8a45ca930cedf43a681e9b05e5899f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - newHighScoreUIPrefab: {fileID: 114903905754242156, guid: 9260a4fb15324b44cb41f206a860a96a,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
