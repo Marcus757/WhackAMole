@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject moleContainer;
     public Player player;
-    public Hammer hammerPrefab;
+    public GameObject hammer;
     public Text infoText;
     public static int level = 1;
     public float spawnDuration;
@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour {
 
     private Mole[] moles;
     private Repository repository;
-    private GameObject hammer;
     private float spawnTimer;
     private float countdownTimer;
     private string scoreFileName;

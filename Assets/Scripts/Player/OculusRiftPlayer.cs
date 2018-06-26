@@ -30,7 +30,7 @@ public class OculusRiftPlayer : Player {
         OVRGrabber[] grabbers = GameObject.FindObjectsOfType<OVRGrabber>();
         foreach (var grabber in grabbers)
         {
-            if (grabber.grabbedObject != null && grabber.grabbedObject.GetType() == item.GetType())
+            if (grabber.grabbedObject != null && grabber.grabbedObject.gameObject.GetType() == item.gameObject.GetType())
                 return true;
         }
 
