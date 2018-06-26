@@ -28,7 +28,7 @@ public class NewHighScoreUI : WorldSpaceUI
         score = GetComponentsInChildren<Text>().Where(textField => textField.name == scoreFieldName).FirstOrDefault();
         initials = GetComponentsInChildren<InputField>().Where(inputField => inputField.name == initialsFieldName).FirstOrDefault();
         repository = new Repository();
-        LoadHighScore(playerScore.totalScore);
+        LoadHighScore(playerScore.score);
     }
 
     private void LoadHighScore(int highScore)
@@ -39,7 +39,7 @@ public class NewHighScoreUI : WorldSpaceUI
 
     public void SaveScore()
     {
-        HighScore highScore = new HighScore(playerScore.totalScore, initials.text, DateTime.Today);
+        HighScore highScore = new HighScore(playerScore.score, initials.text, DateTime.Today);
         repository.SaveScore(highScore);
 
         Destroy(vrKeyboard);

@@ -5,12 +5,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PlayerScore : ScriptableObject
 {
-    public int levelScore;
-    public int totalScore;
+    public int score;
 
     public void ResetScore()
     {
-        levelScore = 0;
-        totalScore = 0;
+        score = 0;
     }
 }

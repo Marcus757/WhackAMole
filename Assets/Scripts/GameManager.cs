@@ -53,22 +53,29 @@ public class GameManager : MonoBehaviour {
         yield return StartCoroutine(LevelStarting());
         yield return StartCoroutine(LevelPlaying());
         yield return StartCoroutine(LevelEnding());
-        yield return StartCoroutine(ShowNewHighScoreUI());
-        yield return StartCoroutine(ShowScoreLeaderboardUI());
+
+        if (level == displayUIOnLevel)
+        {
+            yield return StartCoroutine(ShowNewHighScoreUI());
+            yield return StartCoroutine(ShowScoreLeaderboardUI());
+        }
+            
         HideScoreLeaderboardDisplay();
         ChangeLevel();
         StartCoroutine(GameLoop());
     }
 
     private void SetupGame()
-    { 
-        player.playerScore.ResetScore();
+    {
+        if (level == 1)
+            player.playerScore.ResetScore();
+
         infoText.text = "Grab the hammer and get ready!";
         countdownTimer = 10f;
 
         if (DebugMode)
         {
-            displayUIOnLevel = 1;
+            //displayUIOnLevel = 1;
             gameTimer = 10;
         }
     }
@@ -100,7 +107,7 @@ public class GameManager : MonoBehaviour {
                 var nonVRPlayer = (NonVRPlayer)player;
 
                 if (nonVRPlayer.IsPrimaryMouseButtonPressed())
-                    player.playerScore.levelScore++;
+                    player.playerScore.score++;
             }
 
             PlayGame();
@@ -111,10 +118,9 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator LevelEnding()
     {
-        player.playerScore.totalScore += player.playerScore.levelScore;
-        infoText.text = "Game over!";
-        infoText.text += "\nScore: " + Mathf.Floor(player.playerScore.levelScore);
-        infoText.text += "\nTotal Score: " + Mathf.Floor(player.playerScore.totalScore);
+        infoText.text = "End of round " + level + "!";
+        infoText.text += "\nScore: " + Mathf.Floor(player.playerScore.score);
+        infoText.text += "\nTotal Score: " + Mathf.Floor(player.playerScore.score);
         yield return endWait;
     }
 
@@ -122,7 +128,7 @@ public class GameManager : MonoBehaviour {
     {
         infoText.text = 
             "Time: " + Mathf.Floor(gameTimer) + 
-            "\nScore: " + player.playerScore.levelScore + 
+            "\nScore: " + player.playerScore.score + 
             "\nLevel: " + level;
         spawnTimer -= Time.deltaTime;
 
@@ -148,18 +154,15 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator ShowNewHighScoreUI()
     {
-        if (level == displayUIOnLevel)
+        // Compare player's score with high scores
+        highScoresData.highScores = repository.GetAllHighScores();
+
+        if (IsPlayerScoreNewHighScore(player.playerScore.score, highScoresData.highScores))
+            uiManager.ShowNewHighScoreUI();
+
+        while (IsNewHighScoreUIDisplayed())
         {
-            // Compare player's score with high scores
-            highScoresData.highScores = repository.GetAllHighScores();
-
-            if (IsPlayerScoreNewHighScore(player.playerScore.totalScore, highScoresData.highScores))
-                uiManager.ShowNewHighScoreUI();
-
-            while (IsNewHighScoreUIDisplayed())
-            {
-                yield return null;
-            }
+            yield return null;
         }
     }
 

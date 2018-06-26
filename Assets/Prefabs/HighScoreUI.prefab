@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 114972939817794536}
   - component: {fileID: 114070916620449896}
   - component: {fileID: 114822795262850602}
-  - component: {fileID: 114537787744976934}
+  - component: {fileID: 114026149395862300}
   m_Layer: 0
   m_Name: HighScoreUI
   m_TagString: Untagged
@@ -99,6 +99,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114026149395862300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811915424910728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27bd8d1ca5f6c744981b22f4f5929402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rankFieldName: Rank
+  scoreFieldName: Score
+  nameFieldName: Name
+  dateFieldName: Date
+  rank: {fileID: 0}
+  score: {fileID: 0}
+  name: {fileID: 0}
+  date: {fileID: 0}
 --- !u!114 &114070916620449896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -151,25 +170,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 132
---- !u!114 &114537787744976934
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1811915424910728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b727e99d4b8199438b51fa0171e42da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rankFieldName: Rank
-  scoreFieldName: Score
-  nameFieldName: Name
-  dateFieldName: Date
-  rank: {fileID: 0}
-  score: {fileID: 0}
-  name: {fileID: 0}
-  date: {fileID: 0}
 --- !u!114 &114559445425235906
 MonoBehaviour:
   m_ObjectHideFlags: 1

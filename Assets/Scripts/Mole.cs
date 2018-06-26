@@ -94,7 +94,7 @@ public class Mole : MonoBehaviour {
             return;
 
         mole.OnHit();
-        playerScore.levelScore++;
+        playerScore.score++;
     }
 
     private void ChangeDisappearDuration()

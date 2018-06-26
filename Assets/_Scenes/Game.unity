@@ -1811,7 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f790450c49973de4b99536bad0b41c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreLeaderboardUIPrefab: {fileID: 114760866121964538, guid: bd584c09c2b9f884894f250551ccf25c,
+  scoreLeaderboardUIPrefab: {fileID: 114379610052600482, guid: bd584c09c2b9f884894f250551ccf25c,
     type: 2}
 --- !u!114 &781621641
 MonoBehaviour:
@@ -1824,7 +1824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8a45ca930cedf43a681e9b05e5899f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newHighScoreUIPrefab: {fileID: 114903905754242156, guid: 9260a4fb15324b44cb41f206a860a96a,
+  newHighScoreUIPrefab: {fileID: 114270331260150924, guid: 9260a4fb15324b44cb41f206a860a96a,
     type: 2}
 --- !u!114 &781621642
 MonoBehaviour:

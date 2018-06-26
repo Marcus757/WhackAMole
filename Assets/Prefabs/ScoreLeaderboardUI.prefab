@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 223001237464471834}
   - component: {fileID: 114521803823538852}
   - component: {fileID: 114365115258478566}
-  - component: {fileID: 114760866121964538}
+  - component: {fileID: 114379610052600482}
   m_Layer: 0
   m_Name: ScoreLeaderboardUI
   m_TagString: Untagged
@@ -398,6 +398,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114379610052600482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452041698896120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a1a98328ce7004787e9fed4bcbb62b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 224682804063969778}
+  highScoreDisplayPrefab: {fileID: 114026149395862300, guid: 1088c0ab59b8d894f9bc67bb2303513c,
+    type: 2}
+  highScoresData: {fileID: 11400000, guid: 1cb47d3dd0f450b40a76c1b5c3c9ca8f, type: 2}
 --- !u!114 &114516806787520538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,21 +546,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Rank
---- !u!114 &114760866121964538
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452041698896120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc18c7037114ac14b8443e073d8b9357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTransform: {fileID: 224682804063969778}
-  highScoreDisplayPrefab: {fileID: 114537787744976934, guid: 1088c0ab59b8d894f9bc67bb2303513c,
-    type: 2}
-  highScoresData: {fileID: 11400000, guid: 1cb47d3dd0f450b40a76c1b5c3c9ca8f, type: 2}
 --- !u!114 &114970174132386960
 MonoBehaviour:
   m_ObjectHideFlags: 1
