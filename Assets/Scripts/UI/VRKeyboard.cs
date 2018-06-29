@@ -29,7 +29,8 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class VRKeyboard : MonoBehaviour {
+public class VRKeyboard : MonoBehaviour
+{
 
     public GameObject canvas;
     public GameObject buttonPrototype;
@@ -58,7 +59,7 @@ public class VRKeyboard : MonoBehaviour {
     Dictionary<KeyCode, Key> keyCodeToKey = new Dictionary<KeyCode, Key>(); // map from key codes to keys
 
     // create a single key
-    void CreateKey(string name, string _char, string shiftedChar, KeyCode code, Vector2 pos, Vector2 scale, bool special=false)
+    void CreateKey(string name, string _char, string shiftedChar, KeyCode code, Vector2 pos, Vector2 scale, bool special = false)
     {
         Key key = new Key();
         key.name = name;
@@ -88,7 +89,7 @@ public class VRKeyboard : MonoBehaviour {
     // create a row of keys
     void CreateKeyRow(string chars, string shiftedChars, KeyCode[] codes, Vector2 pos, float offset)
     {
-        pos.x += offset*spacing.x;
+        pos.x += offset * spacing.x;
         for (int i = 0; i < chars.Length; i++)
         {
             CreateKey(chars[i].ToString(), chars[i].ToString(), shiftedChars[i].ToString(), codes[i], pos, Vector2.one);
@@ -186,7 +187,7 @@ public class VRKeyboard : MonoBehaviour {
     // change key text to show shifted character
     void SetCapsShift(bool down)
     {
-        foreach(var k in keys)
+        foreach (var k in keys)
         {
             if (!k.special)
             {
@@ -195,10 +196,11 @@ public class VRKeyboard : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnGUI()
     {
