@@ -20,13 +20,13 @@ public class GameManager : MonoBehaviour {
     public bool DebugMode = false;
     public HighScoresData highScoresData;
     public UIManager uiManager;
+    public int displayUIOnLevel = 1;
 
     private Mole[] moles;
     private Repository repository;
     private float spawnTimer;
     private float countdownTimer;
     private string scoreFileName;
-    private int displayUIOnLevel = 3;
     private float endDelay = 5f;
     private WaitForSeconds endWait;
 

@@ -593,6 +593,7 @@ MonoBehaviour:
   DebugMode: 1
   highScoresData: {fileID: 11400000, guid: 1cb47d3dd0f450b40a76c1b5c3c9ca8f, type: 2}
   uiManager: {fileID: 781621642}
+  displayUIOnLevel: 1
 --- !u!4 &296328014
 Transform:
   m_ObjectHideFlags: 0
@@ -2050,7 +2051,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4480485801523258, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.0732
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 4480485801523258, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7962,6 +7963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1672377800}
   - component: {fileID: 1672377799}
+  - component: {fileID: 1672377801}
   m_Layer: 0
   m_Name: OculusRiftPlayer
   m_TagString: Untagged
@@ -7988,13 +7990,28 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1672377798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.68, y: 1.94, z: -4.006}
+  m_LocalPosition: {x: -0.68, y: 1.591, z: -4.006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 634608488}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1672377801
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672377798}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
 --- !u!1001 &1699235001
 Prefab:
   m_ObjectHideFlags: 0
@@ -8367,7 +8384,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1909202825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.62343, y: 0.541, z: -2.398}
+  m_LocalPosition: {x: -0.62343, y: 0.815, z: -2.398}
   m_LocalScale: {x: 0.5549525, y: 0.5549526, z: 0.5549526}
   m_Children:
   - {fileID: 191136963}
