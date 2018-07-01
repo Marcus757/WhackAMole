@@ -6,9 +6,10 @@ public class UIManager : MonoBehaviour
 {
     private NewHighScoreController newHighScoreController;
     private ScoreLeaderboardController scoreLeaderboardController;
+    private GameObject keyboard;
 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
         newHighScoreController = GetComponent<NewHighScoreController>();
         scoreLeaderboardController = GetComponent<ScoreLeaderboardController>();

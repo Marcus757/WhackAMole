@@ -280,8 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreFieldName: ScoreField
   initialsFieldName: InitialsField
-  vrKeyboardPrefab: {fileID: 114040655036803782, guid: 4df9583c6421ee9478a5121f6800c089,
-    type: 2}
+  keyboardPrefab: {fileID: 0}
   playerScore: {fileID: 11400000, guid: 409ad371208aeeb498b147e2bfb217c7, type: 2}
 --- !u!114 &114290462878636584
 MonoBehaviour:
@@ -733,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.54, y: 1.75}
+  m_AnchoredPosition: {x: -0.54, y: 2.622}
   m_SizeDelta: {x: 180, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224236467734461398

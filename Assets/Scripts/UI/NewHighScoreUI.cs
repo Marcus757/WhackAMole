@@ -7,28 +7,25 @@ public class NewHighScoreUI : WorldSpaceUI
 {
     public string scoreFieldName = "ScoreField";
     public string initialsFieldName = "InitialsField";
-    public VRKeyboard vrKeyboardPrefab;
     public PlayerScore playerScore;
 
     private HighScore highScore;
     private Text score;
     private InputField initials;
-    private VRKeyboard vrKeyboard;
     private Repository repository;
 
-    void Start()
+    void Awake()
     {
-        if (GameObject.FindObjectOfType<Player>() is OculusRiftPlayer)
-        {
-            ConvertToVR();
-            gameObject.AddComponent<OVRRaycaster>().sortOrder = 20;
-            vrKeyboard = Instantiate(vrKeyboardPrefab);
-        }
-
         score = GetComponentsInChildren<Text>().Where(textField => textField.name == scoreFieldName).FirstOrDefault();
         initials = GetComponentsInChildren<InputField>().Where(inputField => inputField.name == initialsFieldName).FirstOrDefault();
         repository = new Repository();
         LoadHighScore(playerScore.score);
+
+        if (GameObject.FindObjectOfType<Player>() is OculusRiftPlayer)
+        {
+            ConvertToVR();
+            gameObject.AddComponent<OVRRaycaster>().sortOrder = 20;
+        }
     }
 
     private void LoadHighScore(int highScore)
@@ -42,8 +39,9 @@ public class NewHighScoreUI : WorldSpaceUI
         HighScore highScore = new HighScore(playerScore.score, initials.text, DateTime.Today);
         repository.SaveScore(highScore);
 
-        Destroy(vrKeyboard);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
+        GameObject.FindGameObjectWithTag("Keyboard").SetActive(false);
     }
 
     public void OnInitialsValueChanged()
