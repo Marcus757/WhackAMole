@@ -589,11 +589,12 @@ MonoBehaviour:
   spawnDuration: 1.5
   spawnDecrement: 0.1
   minimumSpawnDuration: 0.5
-  gameTimer: 30
-  DebugMode: 1
+  gameTimer: 60
   highScoresData: {fileID: 11400000, guid: 1cb47d3dd0f450b40a76c1b5c3c9ca8f, type: 2}
   uiManager: {fileID: 781621642}
-  displayUIOnLevel: 1
+  DebugMode: 1
+  debugGameTime: 10
+  displayUIOnLevel: 3
 --- !u!4 &296328014
 Transform:
   m_ObjectHideFlags: 0
@@ -1335,7 +1336,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 462068, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 481164, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_RootOrder
@@ -1343,7 +1344,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 477154, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_RootOrder
@@ -1434,6 +1435,39 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f60cd4e56954a8d44a5d8f54f35567c5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &695097646 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100008, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+  m_PrefabInternal: {fileID: 640204530}
+--- !u!54 &695097651
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 695097646}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 0
+--- !u!114 &695097652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 695097646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1346aa06071e934b8153123079d709f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeX: 0
+  freezeY: 1
+  freezeZ: 0
 --- !u!1 &702818317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,16 +2305,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114982882214681980, guid: 9260a4fb15324b44cb41f206a860a96a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1255542579}
-    - target: {fileID: 114982882214681980, guid: 9260a4fb15324b44cb41f206a860a96a,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SaveScore
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9260a4fb15324b44cb41f206a860a96a, type: 2}
   m_IsPrefabParent: 0
@@ -2339,6 +2363,11 @@ Prefab:
     - target: {fileID: 4480485801523258, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
       propertyPath: m_LocalScale.z
       value: 34.9411
+      objectReference: {fileID: 0}
+    - target: {fileID: 54108524912967826, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65045072572614392, guid: 9b0e1ce6fdb707f46bdf729b9100cfbe, type: 2}
@@ -4402,7 +4431,7 @@ Prefab:
       objectReference: {fileID: 4300000, guid: 0a36f66798f532e458f5d211b80da691, type: 2}
     - target: {fileID: 11454254, guid: a3d448884fe1e924f90df813328fb743, type: 2}
       propertyPath: hideByDefault
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 168500, guid: a3d448884fe1e924f90df813328fb743, type: 2}
       propertyPath: m_IsActive
@@ -9479,7 +9508,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1672377800}
   - component: {fileID: 1672377799}
-  - component: {fileID: 1672377801}
   m_Layer: 0
   m_Name: OculusRiftPlayer
   m_TagString: Untagged
@@ -9513,21 +9541,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1672377801
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1672377798}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
 --- !u!1001 &1699235001
 Prefab:
   m_ObjectHideFlags: 0
@@ -10301,7 +10314,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 463470, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 158226, guid: 84c8b8609f9bb434eaf5248f17ff1293, type: 2}
       propertyPath: m_IsActive
