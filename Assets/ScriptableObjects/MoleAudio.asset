@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f934ba73485044085a5198308897d0, type: 3}
+  m_Name: MoleAudio
+  m_EditorClassIdentifier: 
+  moleRiseSound: {fileID: 8300000, guid: c240d55a6771a96419314328c5e7e8ac, type: 3}
+  moleFallSound: {fileID: 0}
+  moleHitSound: {fileID: 0}

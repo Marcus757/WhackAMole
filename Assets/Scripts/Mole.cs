@@ -7,13 +7,13 @@ public class Mole : MonoBehaviour {
     public float visibleHeight = 0.2f;
     public float hiddenHeight = -0.3f;
     public float speed = 4f;
-    public float disappearDuration; 
+    public float disappearDuration;
+    public MoleAudio moleAudio;
     
     private Vector3 targetPosition;
     private float disappearTimer = 0f;
     private bool isVisible = false;
-
-
+    private AudioSource audioSource;
     private float disapperDecrement = .1f;
     public float minimumDisappearDuration = 1.25f;
 
@@ -30,13 +30,14 @@ public class Mole : MonoBehaviour {
 
     private void Start()
     {
-        ChangeDisappearDuration();        
+        ChangeDisappearDuration();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update () {
         disappearTimer -= Time.deltaTime;
-        if (disappearTimer < 0f)
+        if (disappearTimer < 0f && isVisible)
             Hide();
 
         transform.localPosition = Vector3.Lerp(
@@ -48,11 +49,14 @@ public class Mole : MonoBehaviour {
 
     public void OnHit()
     {
+        audioSource.PlayOneShot(moleAudio.moleHitSound);
         Hide();
     }
 
     public void Hide()
     {
+        audioSource.PlayOneShot(moleAudio.moleFallSound);
+
         targetPosition = new Vector3(
             transform.localPosition.x,
             hiddenHeight,
@@ -63,6 +67,8 @@ public class Mole : MonoBehaviour {
 
     public void Rise()
     {
+        audioSource.PlayOneShot(moleAudio.moleRiseSound);
+
         targetPosition = new Vector3(
             transform.localPosition.x,
             visibleHeight,

@@ -9317,9 +9317,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bb57be50c7c894b9395143975a9293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingTime: 1.5
-  circle: {fileID: 1636663899}
-  lastTargetName: 
 --- !u!114 &1582657399
 MonoBehaviour:
   m_ObjectHideFlags: 0

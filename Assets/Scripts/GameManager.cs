@@ -17,9 +17,10 @@ public class GameManager : MonoBehaviour {
     public float spawnDecrement = 0.1f;
     public float minimumSpawnDuration = 0.5f;
     public float gameTimer;
-    public bool DebugMode = false;
     public HighScoresData highScoresData;
     public UIManager uiManager;
+    public bool DebugMode = false;
+    public float debugGameTime = 10f;
     public int displayUIOnLevel = 1;
 
     private Mole[] moles;
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour {
         if (DebugMode)
         {
             //displayUIOnLevel = 1;
-            gameTimer = 10;
+            gameTimer = debugGameTime;
         }
     }
 
@@ -196,15 +197,15 @@ public class GameManager : MonoBehaviour {
         return score > highScores.Select(highScore => highScore.Score).Min();
     }
 
-    private void HideGazePointer()
-    {
-        OVRGazePointer ovrGazePointer = GameObject.FindObjectOfType<OVRGazePointer>();
-        
-        if (player.IsItemGrabbed(hammer))
-            OVRGazePointer.instance.RequestHide();
-        else
-            OVRGazePointer.instance.RequestShow();
-    }
+    //private void ToggleGazePointer()
+    //{
+    //    //OVRGazePointer ovrGazePointer = GameObject.FindObjectOfType<OVRGazePointer>(); 
+
+    //    if (player.IsItemGrabbed(hammer))
+    //        OVRGazePointer.instance.hidden = true;
+    //    else
+    //        OVRGazePointer.instance.RequestShow();
+    //}
 
     private void ResetGame()
     {
