@@ -25,12 +25,12 @@ GameObject:
   - component: {fileID: 136293739823245604}
   - component: {fileID: 54802847223999274}
   - component: {fileID: 82049620751394790}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Mole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &4810391086689070
 Transform:
