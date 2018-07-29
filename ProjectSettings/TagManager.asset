@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DisplayUI
   - Keyboard
+  - Hammer
   layers:
   - Default
   - TransparentFX

@@ -91,7 +91,7 @@ public class Mole : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Hammer>() == null)
+        if (other.tag != "Hammer")
             return;
 
         Mole mole = transform.GetComponent<Mole>();

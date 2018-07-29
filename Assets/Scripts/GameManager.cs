@@ -16,13 +16,14 @@ public class GameManager : MonoBehaviour {
     public float spawnDuration;
     public float spawnDecrement = 0.1f;
     public float minimumSpawnDuration = 0.5f;
-    public float gameTimer;
+    public float roundDuration;
     public HighScoresData highScoresData;
     public UIManager uiManager;
     public bool DebugMode = false;
     public float debugGameTime = 10f;
-    public int displayUIOnLevel = 1;
+    public int displayUIOnLevel;
 
+    private float gameTimer;
     private Mole[] moles;
     private Repository repository;
     private float spawnTimer;
@@ -74,10 +75,9 @@ public class GameManager : MonoBehaviour {
         countdownTimer = 10f;
 
         if (DebugMode)
-        {
-            //displayUIOnLevel = 1;
             gameTimer = debugGameTime;
-        }
+        else
+            gameTimer = roundDuration;
     }
 
     private IEnumerator WaitForGrabbedItem()
