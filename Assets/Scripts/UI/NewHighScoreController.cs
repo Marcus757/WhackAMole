@@ -9,7 +9,6 @@ public class NewHighScoreController : MonoBehaviour
 
     public void ShowNewHighScoreUI()
     {
-        //NewHighScoreUI newHighScoreUI = Instantiate(newHighScoreUIPrefab);
         newHighScoreUI.gameObject.SetActive(true);
         keyboard.SetActive(true);
     }

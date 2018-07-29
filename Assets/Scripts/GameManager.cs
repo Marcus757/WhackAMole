@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour {
     {
         if (player.IsResetGamePressed())
             ResetGame();
+
+        ToggleGazePointer();
     }
 
     private IEnumerator GameLoop()
@@ -162,8 +164,14 @@ public class GameManager : MonoBehaviour {
 
         while (IsNewHighScoreUIDisplayed())
         {
+            if (!OVRGazePointer.instance.gameObject.activeSelf)
+                OVRGazePointer.instance.gameObject.SetActive(true);
+
             yield return null;
         }
+
+        if (OVRGazePointer.instance.gameObject.activeSelf)
+            OVRGazePointer.instance.gameObject.SetActive(false);
     }
 
     private bool IsNewHighScoreUIDisplayed()
@@ -197,19 +205,17 @@ public class GameManager : MonoBehaviour {
         return score > highScores.Select(highScore => highScore.Score).Min();
     }
 
-    //private void ToggleGazePointer()
-    //{
-    //    //OVRGazePointer ovrGazePointer = GameObject.FindObjectOfType<OVRGazePointer>(); 
-
-    //    if (player.IsItemGrabbed(hammer))
-    //        OVRGazePointer.instance.hidden = true;
-    //    else
-    //        OVRGazePointer.instance.RequestShow();
-    //}
-
     private void ResetGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void ToggleGazePointer()
+    {
+        if (IsNewHighScoreUIDisplayed() && !OVRGazePointer.instance.gameObject.activeSelf)
+            OVRGazePointer.instance.gameObject.SetActive(true);
+        else if (!IsNewHighScoreUIDisplayed() && OVRGazePointer.instance.gameObject.activeSelf)
+            OVRGazePointer.instance.gameObject.SetActive(false);
     }
 
     #region Testing

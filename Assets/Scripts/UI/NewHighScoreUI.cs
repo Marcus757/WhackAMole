@@ -39,7 +39,6 @@ public class NewHighScoreUI : WorldSpaceUI
         HighScore highScore = new HighScore(playerScore.score, initials.text, DateTime.Today);
         repository.SaveScore(highScore);
 
-        //Destroy(gameObject);
         gameObject.SetActive(false);
         GameObject.FindGameObjectWithTag("Keyboard").SetActive(false);
     }
